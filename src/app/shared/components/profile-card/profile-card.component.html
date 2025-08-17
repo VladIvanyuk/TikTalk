@@ -1,0 +1,44 @@
+@if(profile()) {
+<div class="profile-card">
+  <ul class="profile-card__info-list">
+    <li
+      class="profile-card__info-list-item profile-card__info-list-item--avatar"
+    >
+      <app-avatar
+        [url]="profile().avatarUrl | imgPipe"
+        [size]="avatarSizes.M"
+        loading="lazy"
+      ></app-avatar>
+      <div class="profile-card__username">
+        <p class="profile-card__name">
+          {{ profile().firstName }} {{ profile().lastName }}
+        </p>
+        <p class="profile-card__login">{{ profile().username }}</p>
+      </div>
+    </li>
+    <li class="profile-card__info-list-item">
+      {{ profile().description }}
+    </li>
+    <li class="profile-card__info-list-item">
+      <ul class="tag-list">
+        @for(skill of profile().stack; track skill) {
+        <li>
+          <app-tag>{{ skill }}</app-tag>
+        </li>
+        }
+      </ul>
+    </li>
+    <li
+      class="profile-card__info-list-item profile-card__info-list-item--buttons"
+    >
+      <app-button>
+        <span>Подписаться</span>
+        <img src="/assets/icons/follow.svg" alt="Иконка подписаться" />
+      </app-button>
+      <app-button [isSquare]="true">
+        <img src="/assets/icons/arrow-up.svg" alt="Иконка" />
+      </app-button>
+    </li>
+  </ul>
+</div>
+}
