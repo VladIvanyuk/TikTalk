@@ -12,11 +12,13 @@ import { Profile } from './shared/types/profiles.types';
 })
 export class AppComponent implements OnInit {
   profileService = inject(ProfileService);
-  destroyRef = inject(DestroyRef);
+
+  constructor(private destroyRef: DestroyRef) {}
 
   profiles = signal<Profile[] | null>(null);
 
   ngOnInit() {
+    let x = null;
     this.profileService
       .getProfilesData()
       .pipe(takeUntilDestroyed(this.destroyRef))
