@@ -1,4 +1,4 @@
-export interface Profile {
+export type Profile = {
   id: number;
   username: string;
   avatarUrl: string | null;
@@ -9,4 +9,4 @@ export interface Profile {
   stack: string[];
   city: string;
   description: string;
-}
+};

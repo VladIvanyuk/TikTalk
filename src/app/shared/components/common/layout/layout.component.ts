@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tag',
+  selector: 'app-layout',
   imports: [],
-  templateUrl: './tag.component.html',
-  styleUrl: './tag.component.scss',
+  template: `<p>layout works!</p>`,
+  styleUrl: './layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TagComponent {}
+export class LayoutComponent { }

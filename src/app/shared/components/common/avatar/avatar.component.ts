@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { avatarSizes } from '../../../types/components.types';
 
 @Component({
@@ -6,8 +6,9 @@ import { avatarSizes } from '../../../types/components.types';
   imports: [],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarComponent {
-  size = input.required<avatarSizes>();
-  url = input.required<string | null>();
+  readonly size = input.required<avatarSizes>();
+  readonly url = input.required<string | null>();
 }
