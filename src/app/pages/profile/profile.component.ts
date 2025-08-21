@@ -7,4 +7,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent { }
+export class ProfileComponent {}

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './shared/components/common/layout/layout.component';
-import { SearchComponent } from './shared/components/pages/search/search.component';
-import { LoginComponent } from './shared/components/pages/login/login.component';
-import { ProfileComponent } from './shared/components/pages/profile/profile.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SearchComponent } from './pages/search/search.component';
 
 export const routes: Routes = [
   {

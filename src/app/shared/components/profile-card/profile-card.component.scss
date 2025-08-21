@@ -6,33 +6,51 @@
   background-color: var(--primary-dark-color);
   border: 1px solid var(--primary-white-color);
   border-radius: 2px;
+
+  &__info-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  &__info-list-item {
+    display: grid;
+    align-content: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &__info-list-item--avatar {
+    grid-template-columns: 71px 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  &__username {
+    display: grid;
+    align-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__name {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  &__login {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &__info-list-item--buttons {
+    justify-content: flex-start;
+    grid-auto-flow: column;
+    gap: var(--spacing-sm);
+  }
 }
 
-.profile-card__info-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-xl);
-}
-
-.profile-card__info-list-item {
-  display: grid;
-  align-content: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-}
-
-
-.profile-card__info-list-item--avatar {
-  grid-template-columns: 71px 1fr;
-  gap: var(--spacing-lg);
-}
-
-.profile-card__username {
-  display: grid;
-  align-content: center;
-  gap: var(--spacing-xs);
-}
 
 .tag-list {
   display: flex;
@@ -41,20 +59,3 @@
   justify-content: start;
 }
 
-.profile-card__name {
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 24px;
-}
-
-.profile-card__login {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-}
-
-.profile-card__info-list-item--buttons {
-  justify-content: flex-start;
-  grid-auto-flow: column;
-  gap: var(--spacing-sm);
-}

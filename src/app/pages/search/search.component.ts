@@ -6,10 +6,10 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { ProfileService } from '../../../services/profile.service';
-import { Profile } from '../../../types/profiles.types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ProfileCardComponent } from '../../profile-card/profile-card.component';
+import { ProfileCardComponent } from '../../shared/components/profile-card/profile-card.component';
+import { ProfileService } from '../../shared/services/profile.service';
+import { Profile } from '../../shared/types/profiles.types';
 
 @Component({
   selector: 'app-search',
