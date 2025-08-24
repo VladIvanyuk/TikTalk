@@ -7,11 +7,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
-type LoginFormGroup = {
+export type LoginFormGroup = {
   username: FormControl<string>;
   password: FormControl<string>;
 };
+
+// gorillazbananaz
+// Wnv0hODS9x
 
 @Component({
   selector: 'app-login',
@@ -22,12 +26,13 @@ type LoginFormGroup = {
 })
 export class LoginComponent {
   fb = inject(FormBuilder);
+  authService = inject(AuthService);
   form: FormGroup<LoginFormGroup>;
 
   constructor() {
     this.form = this.fb.group<LoginFormGroup>({
-      username: this.fb.nonNullable.control('', [Validators.required]),
-      password: this.fb.nonNullable.control('', [Validators.required]),
+      username: this.fb.nonNullable.control('gorillazbananaz', [Validators.required]),
+      password: this.fb.nonNullable.control('Wnv0hODS9x', [Validators.required]),
     });
   }
 
@@ -38,6 +43,12 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    console.log(this.form.getRawValue());
+    const value = this.form.getRawValue();
+
+    if (this.form.valid) {
+      this.authService.login(value).subscribe((data) => {
+        console.log(data);
+      });
+    }
   }
 }

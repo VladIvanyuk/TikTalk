@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BASE_API_URL } from '../constants/constants';
-import { Profile } from '../types/profiles.types';
+import { BASE_API_URL } from '../../constants/constants';
+import { Profile } from '../../types/profiles.types';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
