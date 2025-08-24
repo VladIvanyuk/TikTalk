@@ -2,15 +2,16 @@
   <div class="login-container__content">
     <div class="login-form">
       <h2 class="login-form__title">Вход</h2>
-      <form class="login-form__form">
+      <form class="login-form__form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="login-form__form-group">
           <label class="login-form__label" for="username">Telegram username</label>
-          <input class="login-form__input" id="username" name="username" placeholder="Введите логин" type="text" />
+          <input class="login-form__input" formControlName="username" id="username" name="username" placeholder="Введите логин" type="text" />
         </div>
         <div class="login-form__form-group login-form__form-group--password">
           <label class="login-form__label" for="password">Пароль</label>
           <input
             class="login-form__input"
+            formControlName="password"
             id="password"
             name="password"
             placeholder="Введите пароль"
