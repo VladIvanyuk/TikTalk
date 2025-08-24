@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -8,4 +8,10 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {}
+export class LoginComponent {
+  readonly isPasswordVisible = signal(false);
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible.set(!this.isPasswordVisible());
+  }
+}

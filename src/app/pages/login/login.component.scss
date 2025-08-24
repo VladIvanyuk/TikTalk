@@ -28,6 +28,23 @@
 .login-form {
   padding: 43px 0;
 
+  &__password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__form-group--password {
+    position: relative;
+  }
+
   &__form {
     display: grid;
     grid-auto-flow: row;
@@ -63,6 +80,8 @@
     border-radius: 2px;
     padding: 12px 20px;
     background-color: var(--primary-dark-color);
+    color: var(--primary-white-color);
+    font-size: 16px;
   }
 
   &__button {
