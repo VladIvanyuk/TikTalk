@@ -20,4 +20,8 @@ export class ProfileService {
     console.error('ProfileService error:', error);
     return throwError(() => new Error('Не удалось загрузить профили'));
   }
+
+  getMe(): Observable<Profile> {
+    return this.http.get<Profile>(BASE_API_URL + 'account/me').pipe(catchError(this.handleError));
+  }
 }

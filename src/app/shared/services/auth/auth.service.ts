@@ -1,21 +1,75 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BASE_API_URL } from '../../constants/constants';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { Tokens } from '../../types/auth';
+import { AuthService as NgxAuthService } from 'ngx-auth';
+import { Router } from '@angular/router';
+import { AuthCookieService } from './auth-cookie.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements NgxAuthService {
   http = inject(HttpClient);
+  router = inject(Router);
+  cookie = inject(AuthCookieService);
 
-  formData = new FormData();
+  isAuthorized(): Observable<boolean> {
+    return this.getAccessToken().pipe(map((el) => !!el));
+  }
+
+  getAccessToken(): Observable<string> {
+    const token = this.cookie.getAccessToken();
+
+    return of(token);
+  }
+
+  refreshToken(): Observable<any> {
+    const refreshToken = this.cookie.getRefreshToken();
+
+    return this.http
+      .post<Tokens>(`${BASE_API_URL}auth/refresh`, { refresh_token: refreshToken })
+      .pipe(
+        tap((req) => {
+          console.log(req);
+          this.cookie.setTokens(req);
+          this.router.navigateByUrl('/');
+        }),
+        catchError(async (err) => {
+          await this.logout();
+
+          return throwError(() => err);
+        }),
+      );
+  }
+
+  skipRequest(req: HttpRequest<any>): boolean {
+    return req.url.endsWith('/refresh');
+  }
+
+  refreshShouldHappen(response: HttpErrorResponse, request?: HttpRequest<any>): boolean {
+    return response.status === 403;
+  }
 
   login(payload: { username: string; password: string }): Observable<Tokens> {
-    this.formData.append('username', payload.username);
-    this.formData.append('password', payload.password);
+    const formData = new FormData();
 
-    return this.http.post<Tokens>(`${BASE_API_URL}auth/token`, this.formData);
+    formData.append('username', payload.username);
+    formData.append('password', payload.password);
+
+    return this.http.post<Tokens>(`${BASE_API_URL}auth/token`, formData).pipe(
+      tap((req) => {
+        console.log(req);
+        this.cookie.setTokens(req);
+        this.router.navigateByUrl('/');
+      }),
+    );
+  }
+
+  logout(): void {
+    this.cookie.clear();
+    this.router.navigateByUrl('/login');
+    location.reload();
   }
 }
