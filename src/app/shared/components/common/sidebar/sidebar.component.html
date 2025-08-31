@@ -3,8 +3,26 @@
   <ul class="sidebar__menu">
     <li class="sidebar__menu-item">
       <a class="sidebar__menu-link" [routerLink]="['/']">
-        <span class="sidebar__menu-link-icon"></span>
-        <span class="sidebar__menu-link-text">Главная</span>
+        <svg class="icon">
+          <use href="/assets/icons/svg-sprites/menu.svg#home" />
+        </svg>
+        <span class="sidebar__menu-link-text">Моя страница</span>
+      </a>
+    </li>
+    <li class="sidebar__menu-item">
+      <a class="sidebar__menu-link" [routerLink]="['/chats']">
+        <svg class="icon">
+          <use href="/assets/icons/svg-sprites/menu.svg#chat" />
+        </svg>
+        <span class="sidebar__menu-link-text">Чаты</span>
+      </a>
+    </li>
+    <li class="sidebar__menu-item">
+      <a class="sidebar__menu-link" [routerLink]="['/search']">
+        <svg class="icon">
+          <use href="/assets/icons/svg-sprites/menu.svg#search" />
+        </svg>
+        <span class="sidebar__menu-link-text">Поиск</span>
       </a>
     </li>
   </ul>

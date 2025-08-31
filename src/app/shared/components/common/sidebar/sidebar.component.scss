@@ -1,9 +1,35 @@
 .sidebar {
   height: 100%;
-  padding: 20px 24px;
+  padding: 12px 20px;
   background-color: var(--primary-dark-color);
 
   &__logo {
+    box-sizing: content-box;
     margin-bottom: 20px;
+    padding-left: 20px;
+  }
+}
+
+.sidebar__menu {
+  display: grid;
+  gap: var(--spacing-sm);
+
+  &-link-text {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  &-link {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-md);
+    padding: 8px 16px;
+
+    &:hover {
+      color: var(--primary-purple-color);
+    }
   }
 }

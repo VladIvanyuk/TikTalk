@@ -25,6 +25,7 @@
 a {
   text-decoration: none;
   color: var(--primary-white-color);
+  font-family: 'JetBrains Mono', sans-serif;
 
   &:focus {
     outline: none;
@@ -43,4 +44,10 @@ body {
   background-color: var(--primary-dark-color);
   color: var(--primary-white-color);
   font-family: 'JetBrains Mono', sans-serif;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
