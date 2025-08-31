@@ -8,5 +8,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  isSquare = input<boolean>(false);
+  readonly isSquare = input<boolean>(false);
+  readonly type = input<string>('button');
 }

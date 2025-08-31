@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { ButtonComponent } from '../../shared/components/common/button/button.component';
 
 export type LoginFormGroup = {
   username: FormControl<string>;
@@ -19,7 +20,7 @@ export type LoginFormGroup = {
 
 @Component({
   selector: 'app-login',
-  imports: [NgOptimizedImage, ReactiveFormsModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
