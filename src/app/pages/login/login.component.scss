@@ -28,21 +28,21 @@
 .login-form {
   padding: 43px 0;
 
-  &__password-toggle {
+  &__input-btn {
     position: absolute;
     right: 15px;
     top: 35px;
     background-color: transparent;
     border: none;
+
+  }
+
+  .password-icon {
     cursor: pointer;
 
     &:hover {
       opacity: 0.7;
     }
-  }
-
-  &__form-group--password {
-    position: relative;
   }
 
   &__form {
@@ -61,8 +61,8 @@
   &__form-group {
     display: grid;
     grid-auto-flow: row;
+    position: relative;
     gap: var(--spacing-sm);
-
     &:last-of-type {
       margin-bottom: 32px;
     }
