@@ -5,14 +5,21 @@
 
   &__logo {
     box-sizing: content-box;
-    margin-bottom: 20px;
+    margin-bottom: var(--margin-xl);;
     padding-left: 20px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
   }
 }
 
 .sidebar__menu {
   display: grid;
   gap: var(--spacing-sm);
+  margin-bottom: var(--margin-xl);
 
   &-link-text {
     font-weight: 700;

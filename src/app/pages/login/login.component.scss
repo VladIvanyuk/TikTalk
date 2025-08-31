@@ -69,7 +69,7 @@
     position: relative;
     gap: var(--spacing-sm);
     &:last-of-type {
-      margin-bottom: 16px;
+      margin-bottom: var(--margin-lg);
     }
   }
 
