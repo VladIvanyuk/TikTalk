@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../public/styles/fonts.css';
+
+:root {
+  // colors
+  --primary-dark-color: #000000;
+  --primary-white-color: #FFFFFF;
+  --primary-white-color-opacity: #ffffffaf;
+  --primary-purple-color: #AE7AFF;
+
+  // spacing
+  --border-radius-default: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  //margins
+  --margin-default: 0;
+  --margin-sm: 4px;
+  --margin-md: 8px;
+  --margin-lg: 16px;
+  --margin-xl: 20px;
+  --margin-xxl: 32px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-white-color);
+  font-family: 'JetBrains Mono', sans-serif;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+
+body {
+  min-height: 100vh;
+  background: url('../public/assets/imgs/background-main.png') no-repeat center center fixed, url('../public/assets/imgs/bg-sand.png') no-repeat center center fixed;
+  background-size: cover, cover;
+  background-color: var(--primary-dark-color);
+  color: var(--primary-white-color);
+  font-family: 'JetBrains Mono', sans-serif;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
