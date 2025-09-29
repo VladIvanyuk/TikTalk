@@ -37,6 +37,12 @@
 
     &:hover {
       color: var(--primary-purple-color);
+      background-color: #161616;
     }
   }
+}
+
+.active-link {
+  color: var(--primary-purple-color);
+  background-color: #161616;
 }

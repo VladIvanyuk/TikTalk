@@ -1,24 +1,19 @@
-<section class="sidebar">
+<nav class="sidebar">
   <img alt="logo" class="sidebar__logo" height="74" ngSrc="/assets/imgs/small-logo.png" priority width="61" />
   <ul class="sidebar__menu">
-    <li class="sidebar__menu-item">
-      <a class="sidebar__menu-link" [routerLink]="['/']">
-        <app-svg-icon icon="home" name="menu" />
-        <span class="sidebar__menu-link-text">Моя страница</span>
-      </a>
-    </li>
-    <li class="sidebar__menu-item">
-      <a class="sidebar__menu-link" [routerLink]="['/chats']">
-        <app-svg-icon class="icon" icon="chat" name="menu" />
-        <span class="sidebar__menu-link-text">Чаты</span>
-      </a>
-    </li>
-    <li class="sidebar__menu-item">
-      <a class="sidebar__menu-link" [routerLink]="['/search']">
-        <app-svg-icon class="icon" icon="search" name="menu" />
-        <span class="sidebar__menu-link-text">Поиск</span>
-      </a>
-    </li>
+    @for (item of menu; track item.path) {
+      <li class="sidebar__menu-item">
+        <a
+          class="sidebar__menu-link"
+          routerLinkActive="active-link"
+          [routerLink]="[item.path]"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          <app-svg-icon name="menu" [icon]="item.icon" />
+          <span class="sidebar__menu-link-text">{{ item.label }}</span>
+        </a>
+      </li>
+    }
   </ul>
   <h6 class="sidebar__title">Подписчики</h6>
-</section>
+</nav>
