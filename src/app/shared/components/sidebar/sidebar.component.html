@@ -16,4 +16,12 @@
     }
   </ul>
   <h6 class="sidebar__title">Подписчики</h6>
+  <ul class="sidebar__sub-list">
+    @for (item of firstThreeSubs(); track item.id; let i = $index) {
+      <app-user-preview [avatar]="item.avatarUrl" [firstName]="item.firstName" [lastName]="item.lastName" />
+    }
+  </ul>
+  <h6>
+    <a class="sidebar__title sidebar__title--all" href="">Все подписчики</a>
+  </h6>
 </nav>

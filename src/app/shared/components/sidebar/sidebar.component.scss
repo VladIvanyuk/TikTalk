@@ -10,9 +10,30 @@
   }
 
   &__title {
+    margin-bottom: 20px;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+  }
+
+  &__title--all {
+    color: var(--primary-purple-color);
+    position: relative;
+
+    &::after {
+      content: '>';
+      position: absolute;
+      right: -15px;
+      transition: right 0.3s ease;
+    }
+
+    &:hover::after {
+      right: -20px;
+    }
+  }
+
+  &__sub-list {
+    margin-bottom: 20px;
   }
 }
 

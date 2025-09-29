@@ -14,6 +14,6 @@ import { ImgPipe } from '../../pipes/img-pipe.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileCardComponent {
-  avatarSizes = avatarSizes;
+  readonly avatarSizes = avatarSizes;
   readonly profile = input.required<Profile>();
 }

@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { avatarSizes } from '../../../types/components.types';
+import { ImgPipe } from '../../../pipes/img-pipe.pipe';
 
 @Component({
   selector: 'app-avatar',
-  imports: [],
+  imports: [ImgPipe],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

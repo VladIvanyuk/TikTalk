@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 @Component({
