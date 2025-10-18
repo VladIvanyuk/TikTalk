@@ -57,9 +57,6 @@ export class LoginComponent {
     }
     this.isLoginLoading.set(true);
     this.authService.login(value).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
       error: (err: HttpResponseBase) => {
         this.loginError.set(err.status);
         this.isLoginLoading.set(false);

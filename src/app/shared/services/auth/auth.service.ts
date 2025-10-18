@@ -32,7 +32,6 @@ export class AuthService implements NgxAuthService {
       .post<Tokens>(`${BASE_API_URL}auth/refresh`, { refresh_token: refreshToken })
       .pipe(
         tap((req) => {
-          console.log(req);
           this.cookie.setTokens(req);
           this.router.navigateByUrl('/');
         }),

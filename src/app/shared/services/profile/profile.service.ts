@@ -24,7 +24,7 @@ export class ProfileService {
   }
 
   getMe(): Observable<Profile> {
-    return this.http.get<Profile>(BASE_API_URL + 'account/me').pipe(
+    return this.http.get<Profile>(BASE_API_URL + 'account/me2').pipe(
       tap((res) => {
         this.me.set(res);
       }),

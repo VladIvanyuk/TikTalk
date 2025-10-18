@@ -8,7 +8,6 @@ import { UserPreviewComponent } from '../user-preview/user-preview.component';
 import { firstValueFrom } from 'rxjs';
 import { AvatarComponent } from '../common/avatar/avatar.component';
 import { avatarSizes } from '../../types/components.types';
-import { ImgPipe } from '../../pipes/img-pipe.pipe';
 
 @Component({
   selector: 'app-sidebar',
@@ -35,6 +34,6 @@ export class SidebarComponent implements OnInit {
   readonly avatarSizes = avatarSizes;
 
   ngOnInit(): void {
-    firstValueFrom(this.profileService.getMe());
+    firstValueFrom(this.profileService.getMe()).catch((err) => console.log(err));
   }
 }
