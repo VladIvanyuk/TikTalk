@@ -28,7 +28,23 @@
             </svg>
           </button>
         </div>
-        <app-button type="submit">Войти</app-button>
+        @if (loginError()) {
+          @switch (loginError()) {
+            @case (errors.UNAUTHORIZED) {
+              <p>Неверный логин или пароль</p>
+            }
+            @default {
+              <p>Неизвестная ошибка сервера. Попробуйте позже.</p>
+            }
+          }
+        }
+        <app-button type="submit">
+          @if (isLoginLoading()) {
+            <div class="loader"></div>
+          } @else {
+            <span>Войти</span>
+          }
+        </app-button>
       </form>
     </div>
     <img alt="Картинка Тик Толк" height="430" ngSrc="/assets/imgs/big-logo.png" priority width="440" />
