@@ -1,1 +1,5 @@
-<img alt="Аватар пользователя" [class]="[size(), 'avatar']" [src]="url() | imgPipe" />
+@if (url()) {
+  <img alt="Аватар пользователя" [class]="[size(), 'avatar']" [src]="url() | imgPipe" />
+} @else {
+  <img alt="Аватар пользователя" height="32" width="32" [class]="[size(), 'avatar']" [ngSrc]="'/assets/imgs/avatar-placeholder.jpg'" />
+}

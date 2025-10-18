@@ -24,4 +24,17 @@
   <h6>
     <a class="sidebar__title sidebar__title--all" href="">Все подписчики</a>
   </h6>
+  @if (me(); as me) {
+    <div class="user">
+      <div class="user__info-wrapper">
+        <span>
+          <app-avatar [size]="avatarSizes.SM" [url]="me.avatarUrl" />
+        </span>
+        <span class="username">{{ me.username }}</span>
+      </div>
+      <a class="user__settings-link" [routerLink]="['/settings']">
+        <app-svg-icon icon="settings-icon" name="common" />
+      </a>
+    </div>
+  }
 </nav>

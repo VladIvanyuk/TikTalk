@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-svg-icon',
   imports: [],
   template: `<svg class="icon"><use [attr.href]="href" /></svg>`,
-  styles: [],
+  styles: [':host { display: flex; align-items: center}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconComponent {

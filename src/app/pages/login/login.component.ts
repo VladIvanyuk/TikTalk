@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
+import { HttpResponseBase } from '@angular/common/http';
+import { UNAUTHORIZED_RESPONS_STATUS } from '../../shared/constants/constants';
 
 export type LoginFormGroup = {
   username: FormControl<string>;
@@ -26,9 +28,9 @@ export type LoginFormGroup = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  fb = inject(FormBuilder);
-  authService = inject(AuthService);
-  form: FormGroup<LoginFormGroup>;
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  readonly form: FormGroup<LoginFormGroup>;
 
   constructor() {
     this.form = this.fb.group<LoginFormGroup>({
@@ -38,6 +40,10 @@ export class LoginComponent {
   }
 
   readonly isPasswordVisible = signal(false);
+  readonly isLoginLoading = signal(false);
+  readonly loginError = signal<number | null>(null);
+
+  readonly errors = UNAUTHORIZED_RESPONS_STATUS;
 
   togglePasswordVisibility(): void {
     this.isPasswordVisible.set(!this.isPasswordVisible());
@@ -46,10 +52,15 @@ export class LoginComponent {
   onSubmit(): void {
     const value = this.form.getRawValue();
 
-    if (this.form.valid) {
-      this.authService.login(value).subscribe((data) => {
-        console.log(data);
-      });
+    if (!this.form.valid) {
+      return;
     }
+    this.isLoginLoading.set(true);
+    this.authService.login(value).subscribe({
+      error: (err: HttpResponseBase) => {
+        this.loginError.set(err.status);
+        this.isLoginLoading.set(false);
+      },
+    });
   }
 }
