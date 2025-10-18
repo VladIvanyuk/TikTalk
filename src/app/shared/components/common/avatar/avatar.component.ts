@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { avatarSizes } from '../../../types/components.types';
 import { ImgPipe } from '../../../pipes/img-pipe.pipe';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-avatar',
-  imports: [ImgPipe],
+  imports: [ImgPipe, NgOptimizedImage],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,6 +3,7 @@
 :root {
   // colors
   --primary-dark-color: #000000;
+  --primary-dark-lighter-color: #161616;;
   --primary-white-color: #FFFFFF;
   --primary-white-color-opacity: #ffffffaf;
   --primary-purple-color: #AE7AFF;
@@ -55,7 +56,7 @@ body {
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
 }

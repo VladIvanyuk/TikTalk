@@ -1,4 +1,6 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 12px 20px;
   background-color: var(--primary-dark-color);
@@ -35,6 +37,34 @@
   &__sub-list {
     margin-bottom: 20px;
   }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 4px 16px;
+    color: var(--primary-purple-color);
+    background-color: var(--primary-dark-lighter-color);
+
+    &__info-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &__settings-link {
+      color: inherit;
+    }
+
+    .username {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+  }
+
 }
 
 .sidebar__menu {
@@ -58,12 +88,12 @@
 
     &:hover {
       color: var(--primary-purple-color);
-      background-color: #161616;
+      background-color: var(--primary-dark-lighter-color);
     }
   }
 }
 
 .active-link {
   color: var(--primary-purple-color);
-  background-color: #161616;
+  background-color: var(--primary-dark-lighter-color);
 }

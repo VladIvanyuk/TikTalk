@@ -62,6 +62,7 @@ export class LoginComponent {
       },
       error: (err: HttpResponseBase) => {
         this.loginError.set(err.status);
+        this.isLoginLoading.set(false);
       },
     });
   }
