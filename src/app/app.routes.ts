@@ -11,7 +11,8 @@ export const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: SearchComponent },
+      { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
+      { path: 'search', component: SearchComponent },
       { path: 'chats', component: ChatsComponent },
       { path: 'profile/:id', component: ProfileComponent },
     ],

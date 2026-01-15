@@ -41,6 +41,15 @@ export class ProfileService {
     );
   }
 
+  getUser(id: string): Observable<Profile> {
+    return this.http.get<Profile>(BASE_API_URL + `account/${id}`).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError),
+    );
+  }
+
   get myProfile(): Signal<Profile | null> {
     return this.me.asReadonly();
   }

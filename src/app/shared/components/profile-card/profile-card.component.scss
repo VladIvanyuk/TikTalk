@@ -26,28 +26,6 @@
     }
   }
 
-  &__info-list-item--avatar {
-    grid-template-columns: 71px 1fr;
-    gap: var(--spacing-lg);
-  }
-
-  &__username {
-    display: grid;
-    align-content: center;
-    gap: var(--spacing-xs);
-  }
-
-  &__name {
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  &__login {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-  }
 
   &__info-list-item--buttons {
     justify-content: flex-start;

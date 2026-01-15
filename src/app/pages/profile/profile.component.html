@@ -1,2 +1,5 @@
-<p>profile works!</p>
-,
+<section>
+  @if (profile$ | async; as profile) {
+    <app-profile-header [avatarSize]="avatarSizes.XL" [profile]="profile" />
+  }
+</section>

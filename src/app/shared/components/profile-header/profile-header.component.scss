@@ -1,0 +1,49 @@
+.profile-header {
+  min-height: 160px;
+  padding: 24px;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+
+  &__username {
+    display: grid;
+    align-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__name {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24px;
+
+    &--large {
+      font-size: 24px;
+    }
+  }
+
+  &__login {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &__info-list-item--avatar {
+    grid-template-columns: 71px 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  &__info-list-item {
+    display: grid;
+    align-content: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    .follow-icon, .arrow-up-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

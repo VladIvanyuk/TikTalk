@@ -33,7 +33,6 @@ export class AuthService implements NgxAuthService {
       .pipe(
         tap((req) => {
           this.cookie.setTokens(req);
-          this.router.navigateByUrl('/');
         }),
         catchError(async (err) => {
           await this.logout();
