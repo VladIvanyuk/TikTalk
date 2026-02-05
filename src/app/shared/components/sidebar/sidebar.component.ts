@@ -5,7 +5,7 @@ import { SvgIconComponent } from '../common/svg-icon/svg-icon.component';
 import { sidebarMenu } from './models/menu';
 import { ProfileService } from '../../services/profile/profile.service';
 import { UserPreviewComponent } from '../user-preview/user-preview.component';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { AvatarComponent } from '../common/avatar/avatar.component';
 import { avatarSizes } from '../../types/components.types';
 
@@ -27,7 +27,9 @@ import { avatarSizes } from '../../types/components.types';
 })
 export class SidebarComponent implements OnInit {
   private readonly profileService = inject(ProfileService);
-  readonly subscribers$ = this.profileService.getMySubscribers();
+  readonly subscribers$ = this.profileService
+    .getMySubscribers()
+    .pipe(map((subscribers) => subscribers.slice(0, 3)));
   readonly me = this.profileService.myProfile;
 
   readonly menu = sidebarMenu;

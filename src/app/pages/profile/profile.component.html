@@ -1,5 +1,65 @@
-<section>
-  @if (profile$ | async; as profile) {
+@if (profile$ | async; as profile) {
+  <header class="profile__header">
     <app-profile-header [avatarSize]="avatarSizes.XL" [profile]="profile" />
-  }
-</section>
+    <div class="settings-btn-wrapper">
+      <app-button class="settings-btn">
+        <span>Редактировать</span>
+        <app-svg-icon icon="settings-icon" name="common" />
+      </app-button>
+    </div>
+  </header>
+  <main class="profile__main">
+    <section class="profile__content">11111</section>
+    <section class="profile__sub-content">
+      <ul class="profile__sub-content-list">
+        <li class="profile__sub-content-list-item">
+          <h5 class="profile__sub-content-title">Подписчики</h5>
+          @if (subs$ | async; as subs) {
+            @if (!subsLoading()) {
+              <ul class="profile__sub-content-subscribers-list">
+                @for (sub of subs; track sub.id) {
+                  <li class="profile__sub-content-subscribers-list-item">
+                    <a [routerLink]="['/profile/', sub.id]">
+                      <app-avatar [size]="avatarSizes.SM" [url]="sub.avatarUrl" />
+                    </a>
+                  </li>
+                }
+                <li class="profile__sub-content-subscribers-list-item profile__sub-content-subscribers-list-item--icon">
+                  <a [routerLink]="['/search']">
+                    <app-svg-icon icon="add-icon" name="common" />
+                  </a>
+                </li>
+              </ul>
+            }
+          }
+        </li>
+        <li class="profile__sub-content-list-item">
+          <h5 class="profile__sub-content-title">Навыки</h5>
+          <ul class="profile__sub-content-skill-list">
+            @for (skill of profile.stack; track skill) {
+              <li class="profile__sub-content-skill-list-item">
+                <app-tag>
+                  {{ skill }}
+                </app-tag>
+              </li>
+            } @empty {
+              <p class="profile__sub-content-empty">
+                {{ 'Список пуст' }}
+              </p>
+            }
+          </ul>
+        </li>
+        <li>
+          <h5 class="profile__sub-content-title">О себе</h5>
+          @if (profile.description) {
+            <p class="profile__sub-content-descr">{{ profile.description }}</p>
+          } @else {
+            <p class="profile__sub-content-empty">
+              {{ 'Нет информации' }}
+            </p>
+          }
+        </li>
+      </ul>
+    </section>
+  </main>
+}

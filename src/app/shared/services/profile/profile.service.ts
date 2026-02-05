@@ -35,7 +35,16 @@ export class ProfileService {
   getMySubscribers(): Observable<Profile[]> {
     return this.http.get<SubscribersPagination>(BASE_API_URL + 'account/subscribers/').pipe(
       map((response) => {
-        return response.items.slice(0, 3).filter((subscriber) => Boolean(subscriber));
+        return response.items.filter((subscriber) => Boolean(subscriber));
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  getSubscribers(id: string): Observable<Profile[]> {
+    return this.http.get<SubscribersPagination>(BASE_API_URL + `account/subscribers/${id}`).pipe(
+      map((response) => {
+        return response.items.filter((subscriber) => Boolean(subscriber));
       }),
       catchError(this.handleError),
     );

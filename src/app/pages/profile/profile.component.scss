@@ -1,0 +1,71 @@
+.profile__header,
+.profile__main {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px ;
+}
+
+.profile__header {
+  margin-bottom: 48px;
+
+  .settings-btn-wrapper {
+    display: grid;
+    align-items: center;
+
+    .settings-btn {
+      display: block;
+      width: fit-content;
+    }
+
+  }
+}
+
+.profile__main {
+  .profile__sub-content {
+
+    &-empty {
+      font-size: 14px;
+    }
+
+    &-descr {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    &-list {
+      display: grid;
+      gap: 32px;
+    }
+
+    &-skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+
+    &-subscribers-list {
+      display: grid;
+      grid-template-columns: repeat(7, 32px);
+      gap: 6px ;
+
+      .profile__sub-content-subscribers-list-item {
+        display: grid;
+        place-items: center;
+
+        &--icon {
+          cursor: pointer;
+          :hover {
+            color: var(--primary-purple-color);
+          }
+        }
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+  }
+}
