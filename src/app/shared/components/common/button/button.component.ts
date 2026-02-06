@@ -10,4 +10,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 export class ButtonComponent {
   readonly isSquare = input<boolean>(false);
   readonly type = input<string>('button');
+  readonly isGhost = input(false);
 }

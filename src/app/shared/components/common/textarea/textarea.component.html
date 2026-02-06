@@ -1,0 +1,4 @@
+<div class="textarea-wrapper">
+  <p class="textarea-label">{{ label() }}</p>
+  <textarea class="textarea" [cols]="cols()" [rows]="rows()" [value]="inputValue()" (blur)="onTouch()" (input)="onInput($event)"> </textarea>
+</div>

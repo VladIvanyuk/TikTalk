@@ -4,6 +4,7 @@ import { BASE_API_URL } from '../../constants/constants';
 import { Profile } from '../../types/profiles.types';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { SubscribersPagination } from './model/types';
+import { UserUpdateData } from './types';
 
 @Injectable({
   providedIn: 'root',
@@ -59,7 +60,17 @@ export class ProfileService {
     );
   }
 
+  updateMe(data: UserUpdateData): Observable<Profile> {
+    return this.http
+      .patch<Profile>(BASE_API_URL + `account/me`, data)
+      .pipe(catchError(this.handleError));
+  }
+
   get myProfile(): Signal<Profile | null> {
     return this.me.asReadonly();
+  }
+
+  updateMyProfile(data: Profile): void {
+    this.me.set(data);
   }
 }

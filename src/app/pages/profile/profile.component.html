@@ -2,7 +2,7 @@
   <header class="profile__header">
     <app-profile-header [avatarSize]="avatarSizes.XL" [profile]="profile" />
     <div class="settings-btn-wrapper">
-      <app-button class="settings-btn">
+      <app-button class="settings-btn" [routerLink]="['/settings']">
         <span>Редактировать</span>
         <app-svg-icon icon="settings-icon" name="common" />
       </app-button>
