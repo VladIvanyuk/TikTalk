@@ -66,11 +66,20 @@ export class ProfileService {
       .pipe(catchError(this.handleError));
   }
 
-  get myProfile(): Signal<Profile | null> {
-    return this.me.asReadonly();
-  }
-
   updateMyProfile(data: Profile): void {
     this.me.set(data);
+  }
+
+  updateAvatar(file: File): Observable<Profile> {
+    const fd = new FormData();
+    fd.append('image', file);
+
+    return this.http
+      .post<Profile>(BASE_API_URL + `account/upload_image`, fd)
+      .pipe(catchError(this.handleError));
+  }
+
+  get myProfile(): Signal<Profile | null> {
+    return this.me.asReadonly();
   }
 }

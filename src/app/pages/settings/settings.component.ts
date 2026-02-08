@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { ProfileService } from '../../shared/services/profile/profile.service';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
@@ -17,6 +17,7 @@ import { TextareaComponent } from '../../shared/components/common/textarea/texta
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
 import { RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
+import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 
 type SettingsForm = {
   firstName: FormControl<string>;
@@ -36,6 +37,7 @@ type SettingsForm = {
     TextareaComponent,
     ButtonComponent,
     RouterLink,
+    AvatarUploadComponent,
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
@@ -45,6 +47,7 @@ export class SettingsComponent {
   private readonly profileService = inject(ProfileService);
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly avatar = signal<File | null>(null);
 
   readonly me$ = toObservable(this.profileService.myProfile).pipe(
     tap((data) => {
@@ -72,6 +75,10 @@ export class SettingsComponent {
     });
   }
 
+  updateAvatar(file: File | null = null): any {
+    this.avatar.set(file);
+  }
+
   submit(): void {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
@@ -81,6 +88,20 @@ export class SettingsComponent {
     }
 
     const value = this.form.getRawValue();
+
+    if (this.avatar()) {
+      this.profileService
+        .updateAvatar(this.avatar()!)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: (data) => {
+            this.profileService.updateMyProfile(data);
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
+    }
 
     this.profileService
       .updateMe(value)

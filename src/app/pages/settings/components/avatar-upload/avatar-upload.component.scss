@@ -1,0 +1,38 @@
+.avatar-upload-wrapper {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+}
+
+.avatar-input {
+  display: grid;
+  place-items: center center;
+  padding: 16px;
+  border: 1px dashed var(--primary-white-color);
+
+  &__text {
+    text-align: center;
+    line-height: 1.5;
+
+    .load-btn {
+      color: var(--primary-purple-color);
+    }
+  }
+
+  .input {
+    display: none;
+  }
+
+  .icon {
+    padding-top: 15px;
+  }
+}
+
+.avatar-img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.fileover {
+  border-color: var(--primary-purple-color);
+}

@@ -11,6 +11,7 @@
         </div>
         <app-input class="input" formControlName="username" label="Telegram username" />
         <app-textarea formControlName="description" label="О себе" rows="5" />
+        <app-avatar-upload (updateAvatar)="updateAvatar($event)" />
         <div class="settings-form__buttons">
           <app-button type="button" [isGhost]="true" [routerLink]="['/profile/me']">Отмена</app-button>
           <app-button type="submit">Сохранить</app-button>
