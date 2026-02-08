@@ -4,6 +4,7 @@ import { BASE_API_URL } from '../../constants/constants';
 import { Profile } from '../../types/profiles.types';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { SubscribersPagination } from './model/types';
+import { UserUpdateData } from './types';
 
 @Injectable({
   providedIn: 'root',
@@ -35,10 +36,47 @@ export class ProfileService {
   getMySubscribers(): Observable<Profile[]> {
     return this.http.get<SubscribersPagination>(BASE_API_URL + 'account/subscribers/').pipe(
       map((response) => {
-        return response.items.slice(0, 3).filter((subscriber) => Boolean(subscriber));
+        return response.items.filter((subscriber) => Boolean(subscriber));
       }),
       catchError(this.handleError),
     );
+  }
+
+  getSubscribers(id: string): Observable<Profile[]> {
+    return this.http.get<SubscribersPagination>(BASE_API_URL + `account/subscribers/${id}`).pipe(
+      map((response) => {
+        return response.items.filter((subscriber) => Boolean(subscriber));
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  getUser(id: string): Observable<Profile> {
+    return this.http.get<Profile>(BASE_API_URL + `account/${id}`).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  updateMe(data: UserUpdateData): Observable<Profile> {
+    return this.http
+      .patch<Profile>(BASE_API_URL + `account/me`, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  updateMyProfile(data: Profile): void {
+    this.me.set(data);
+  }
+
+  updateAvatar(file: File): Observable<Profile> {
+    const fd = new FormData();
+    fd.append('image', file);
+
+    return this.http
+      .post<Profile>(BASE_API_URL + `account/upload_image`, fd)
+      .pipe(catchError(this.handleError));
   }
 
   get myProfile(): Signal<Profile | null> {

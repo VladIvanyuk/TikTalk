@@ -1,0 +1,22 @@
+@if (me$ | async; as me) {
+  <section class="settings">
+    <div class="settings_user-info">
+      <app-profile-header [avatarSize]="avatarSizes.L" [profile]="me" />
+    </div>
+    <div class="settings_user-settings">
+      <form class="settings-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="settings-form__about">
+          <app-input class="input" formControlName="firstName" label="Имя" />
+          <app-input class="input" formControlName="lastName" label="Фамилия" />
+        </div>
+        <app-input class="input" formControlName="username" label="Telegram username" />
+        <app-textarea formControlName="description" label="О себе" rows="5" />
+        <app-avatar-upload (updateAvatar)="updateAvatar($event)" />
+        <div class="settings-form__buttons">
+          <app-button type="button" [isGhost]="true" [routerLink]="['/profile/me']">Отмена</app-button>
+          <app-button type="submit">Сохранить</app-button>
+        </div>
+      </form>
+    </div>
+  </section>
+}

@@ -1,0 +1,16 @@
+<div class="avatar-upload-wrapper">
+  <img alt="Аватар пользователя" class="avatar-img" height="140" width="140" [ngSrc]="preview()" />
+  <div
+    appDnd
+    class="avatar-input"
+    tabindex="0"
+    (click)="fileInput.click()"
+    (keydown.enter)="fileInput.click()"
+    (keydown.space)="fileInput.click()"
+    (updateAvatar)="changeFileHandler($event)"
+  >
+    <app-svg-icon class="icon" icon="upload-icon" name="common" />
+    <p class="avatar-input__text">Перетащите изображение или <span class="load-btn">Загрузите</span> (разрешение до 5,000 x 5,000 px)</p>
+    <input #fileInput class="input" type="file" (change)="changeFileHandler($event)" />
+  </div>
+</div>

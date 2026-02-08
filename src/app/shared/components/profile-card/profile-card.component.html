@@ -1,12 +1,8 @@
 @if (profile(); as profile) {
   <div class="profile-card">
     <ul class="profile-card__info-list">
-      <li class="profile-card__info-list-item profile-card__info-list-item--avatar">
-        <app-avatar loading="lazy" [size]="avatarSizes.M" [url]="profile.avatarUrl" />
-        <div class="profile-card__username">
-          <p class="profile-card__name">{{ profile.firstName }} {{ profile.lastName }}</p>
-          <p class="profile-card__login">{{ profile.username }}</p>
-        </div>
+      <li>
+        <app-profile-header [profile]="profile" />
       </li>
       <li class="profile-card__info-list-item">
         {{ profile.description }}

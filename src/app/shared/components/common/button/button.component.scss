@@ -21,6 +21,12 @@
   }
 }
 
+.ghost {
+  background-color: transparent;
+  color: white;
+  border: 1px solid var(--primary-white-color);
+}
+
 .square {
   padding: 10px;
 }

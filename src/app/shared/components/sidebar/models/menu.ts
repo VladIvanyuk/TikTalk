@@ -2,7 +2,7 @@ export const sidebarMenu = [
   {
     icon: 'home',
     label: 'Моя страница',
-    path: '/',
+    path: '/profile/me',
   },
   {
     icon: 'chat',

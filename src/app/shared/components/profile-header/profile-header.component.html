@@ -1,0 +1,7 @@
+<div class="profile-header">
+  <app-avatar loading="lazy" [size]="avatarSize()" [url]="profile().avatarUrl" />
+  <div class="profile-header__username">
+    <p [class]="['profile-header__name', `profile-header__name--${avatarSize()}`]">{{ profile().firstName }} {{ profile().lastName }}</p>
+    <p [class]="['profile-header__login', `profile-header__login--${avatarSize()}`]">{{ profile().username }}</p>
+  </div>
+</div>
