@@ -11,4 +11,5 @@ export class ButtonComponent {
   readonly isSquare = input<boolean>(false);
   readonly type = input<string>('button');
   readonly isGhost = input(false);
+  readonly isLoading = input(false);
 }

@@ -10,11 +10,12 @@
           <app-input class="input" formControlName="lastName" label="Фамилия" />
         </div>
         <app-input class="input" formControlName="username" label="Telegram username" />
-        <app-textarea formControlName="description" label="О себе" rows="5" />
+        <app-textarea formControlName="description" label="О себе" rows="3" />
         <app-avatar-upload (updateAvatar)="updateAvatar($event)" />
+        <app-stack-input formControlName="stack" [stack]="me.stack" />
         <div class="settings-form__buttons">
           <app-button type="button" [isGhost]="true" [routerLink]="['/profile/me']">Отмена</app-button>
-          <app-button type="submit">Сохранить</app-button>
+          <app-button type="submit" [isLoading]="isLoading()">Сохранить</app-button>
         </div>
       </form>
     </div>
