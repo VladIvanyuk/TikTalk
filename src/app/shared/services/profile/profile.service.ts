@@ -3,8 +3,7 @@ import { inject, Injectable, Signal, signal } from '@angular/core';
 import { BASE_API_URL } from '../../constants/constants';
 import { Profile } from '../../types/profiles.types';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import { SubscribersPagination } from './model/types';
-import { UserUpdateData } from './types';
+import { SubscribersPagination, UserUpdateData } from './model/types';
 
 @Injectable({
   providedIn: 'root',

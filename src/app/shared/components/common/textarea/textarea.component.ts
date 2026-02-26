@@ -54,6 +54,7 @@ export class TextareaComponent implements ControlValueAccessor {
     this.r2.setStyle(inputElement, 'height', `auto`);
     this.r2.setStyle(inputElement, 'height', `${inputElement.scrollHeight}px`);
 
+    this.inputValue.set(value);
     this.onChange(value);
   }
 }
