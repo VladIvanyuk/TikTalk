@@ -1,0 +1,13 @@
+.post-input {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  background-color: var(--primary-dark-color);
+  border: 1px solid var(--primary-white-color);
+  border-radius: 2px;
+}
+
+.textarea {
+  width: 100%;
+}

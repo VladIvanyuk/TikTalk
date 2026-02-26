@@ -1,0 +1,7 @@
+<div class="post-input">
+  <app-avatar [size]="avatarSizes.SM" [url]="profileService()?.avatarUrl ?? ''" />
+  <app-textarea class="textarea" placeholder="Введите что нибудь..." rows="1" [isBordered]="false" />
+  <app-button>
+    <app-svg-icon icon="send-icon" name="common" />
+  </app-button>
+</div>
