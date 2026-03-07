@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import {
   FormBuilder,
@@ -30,6 +31,7 @@ export type LoginFormGroup = {
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly destroyRef = inject(DestroyRef);
   readonly form: FormGroup<LoginFormGroup>;
 
   constructor() {
@@ -56,11 +58,14 @@ export class LoginComponent {
       return;
     }
     this.isLoginLoading.set(true);
-    this.authService.login(value).subscribe({
-      error: (err: HttpResponseBase) => {
-        this.loginError.set(err.status);
-        this.isLoginLoading.set(false);
-      },
-    });
+    this.authService
+      .login(value)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        error: (err: HttpResponseBase) => {
+          this.loginError.set(err.status);
+          this.isLoginLoading.set(false);
+        },
+      });
   }
 }

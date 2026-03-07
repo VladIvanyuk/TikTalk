@@ -7,7 +7,17 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { inject, signal } from '@angular/core';
-import { catchError, first, from, map, Observable, Subject, switchMap, throwError } from 'rxjs';
+import {
+  catchError,
+  first,
+  from,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+  take,
+  throwError,
+} from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 
 export const refreshInProgress = signal(false);
@@ -67,16 +77,18 @@ function responseError(
   if (refreshShouldHappen && !refreshInProgress()) {
     refreshInProgress.set(true);
 
-    from(authService.refreshToken()).subscribe({
-      error: () => {
-        refreshInProgress.set(false);
-        delay$.next(false);
-      },
-      next: () => {
-        refreshInProgress.set(false);
-        delay$.next(true);
-      },
-    });
+    from(authService.refreshToken())
+      .pipe(take(1))
+      .subscribe({
+        error: () => {
+          refreshInProgress.set(false);
+          delay$.next(false);
+        },
+        next: () => {
+          refreshInProgress.set(false);
+          delay$.next(true);
+        },
+      });
   }
 
   if (refreshShouldHappen && refreshInProgress()) {

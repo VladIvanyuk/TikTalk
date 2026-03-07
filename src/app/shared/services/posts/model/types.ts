@@ -7,6 +7,13 @@ export type PostPayloadData = {
   communityId: number;
 };
 
+export type CommentPayloadData = {
+  text: string;
+  authorId: number;
+  postId: number;
+  commentId?: number;
+};
+
 export type Post = {
   id: number;
   title: string;
@@ -18,5 +25,15 @@ export type Post = {
   updatedAt: string;
   likes: number;
   likesUsers: [string];
-  comments: [];
+  comments: Comment[];
+};
+
+export type Comment = {
+  id: number;
+  text: string;
+  author: Profile;
+  postId: number;
+  commentId: number;
+  createdAt: string;
+  updatedAt: string;
 };
