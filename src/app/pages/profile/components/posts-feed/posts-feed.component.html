@@ -1,0 +1,46 @@
+<div class="post-form">
+  <app-post-form placeholder="Введите что нибудь..." (sendPost)="sendPost($event)" />
+</div>
+<ul class="post-feed-list">
+  @for (item of posts(); track item.id) {
+    <li class="post-feed-list__item">
+      <app-avatar [size]="avatarSizes.SM" [url]="item.author.avatarUrl" />
+      <div class="post-feed-card">
+        <div class="post-feed-card__header">
+          <p class="post-feed-card__header-username">{{ item.author.firstName }} {{ item.author.lastName }}</p>
+          <p class="post-feed-card__header-time">{{ item.createdAt | date: ' hh:mm dd.MM.yyyy' }}</p>
+        </div>
+        <p class="post-feed-card__text">
+          {{ item.content }}
+        </p>
+        <div class="post-feed-card__icons">
+          <div class="post-feed-card__icons-wrapper post-feed-card__icons-wrapper--comments">
+            <app-svg-icon [icon]="'comment-icon'" [name]="'common'" />
+            <p>{{ item.comments.length }}</p>
+          </div>
+          <div class="post-feed-card__icons-wrapper">
+            <app-svg-icon [icon]="'like-icon'" [name]="'common'" />
+            <p>{{ item.likes }}</p>
+          </div>
+        </div>
+        <ul class="post-feed-card__comments-list">
+          @for (comment of item.comments; track comment.id) {
+            <li class="post-feed-card__comments-list-item">
+              <app-avatar [size]="avatarSizes.SM" [url]="comment.author.avatarUrl" />
+              <div class="comment-wrapper">
+                <div class="comment-header">
+                  <p class="comment-header__username">{{ comment.author.firstName }} {{ comment.author.lastName }}</p>
+                  <p class="comment-header__date">{{ comment.createdAt | date: ' hh:mm dd.MM.yyyy' }}</p>
+                </div>
+                <p class="comment-text">{{ comment.text }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+        <div class="post-form">
+          <app-post-form placeholder="Введите комментарий..." (sendPost)="sendComment($event, item.id)" />
+        </div>
+      </div>
+    </li>
+  }
+</ul>

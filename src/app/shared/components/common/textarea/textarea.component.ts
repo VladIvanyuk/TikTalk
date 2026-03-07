@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -16,10 +23,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   ],
 })
 export class TextareaComponent implements ControlValueAccessor {
+  private readonly r2 = inject(Renderer2);
+
   readonly inputValue = signal('');
   readonly label = input();
   readonly cols = input();
   readonly rows = input();
+  readonly isBordered = input<boolean>(true);
+  readonly placeholder = input();
 
   onChange: (value: string) => void = () => {};
   onTouch: () => void = () => {};
@@ -40,6 +51,10 @@ export class TextareaComponent implements ControlValueAccessor {
     const inputElement = event.target as HTMLTextAreaElement;
     const value = inputElement.value;
 
+    this.r2.setStyle(inputElement, 'height', `auto`);
+    this.r2.setStyle(inputElement, 'height', `${inputElement.scrollHeight}px`);
+
+    this.inputValue.set(value);
     this.onChange(value);
   }
 }

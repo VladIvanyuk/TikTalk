@@ -10,6 +10,7 @@ import { ButtonComponent } from '../../shared/components/common/button/button.co
 import { SvgIconComponent } from '../../shared/components/common/svg-icon/svg-icon.component';
 import { AvatarComponent } from '../../shared/components/common/avatar/avatar.component';
 import { TagComponent } from '../../shared/components/common/tag/tag.component';
+import { PostsFeedComponent } from './components/posts-feed/posts-feed.component';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,7 @@ import { TagComponent } from '../../shared/components/common/tag/tag.component';
     AvatarComponent,
     RouterLink,
     TagComponent,
+    PostsFeedComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',

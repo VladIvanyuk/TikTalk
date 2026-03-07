@@ -18,12 +18,14 @@ import { ButtonComponent } from '../../shared/components/common/button/button.co
 import { RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
 import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
+import { StackInputComponent } from '../../shared/components/common/stack-input/stack-input.component';
 
 type SettingsForm = {
   firstName: FormControl<string>;
   lastName: FormControl<string>;
   username: FormControl<string>;
   description: FormControl<string>;
+  stack: FormControl<string[] | null>;
 };
 
 @Component({
@@ -38,6 +40,7 @@ type SettingsForm = {
     ButtonComponent,
     RouterLink,
     AvatarUploadComponent,
+    StackInputComponent,
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
@@ -48,6 +51,8 @@ export class SettingsComponent {
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
   private readonly avatar = signal<File | null>(null);
+
+  readonly isLoading = signal(false);
 
   readonly me$ = toObservable(this.profileService.myProfile).pipe(
     tap((data) => {
@@ -72,10 +77,11 @@ export class SettingsComponent {
       lastName: this.fb.nonNullable.control('', Validators.required),
       username: this.fb.nonNullable.control({ value: '', disabled: true }),
       description: this.fb.nonNullable.control('', Validators.required),
+      stack: this.fb.nonNullable.control(null),
     });
   }
 
-  updateAvatar(file: File | null = null): any {
+  updateAvatar(file: File | null = null): void {
     this.avatar.set(file);
   }
 
@@ -86,6 +92,8 @@ export class SettingsComponent {
     if (this.form.invalid) {
       return;
     }
+
+    this.isLoading.set(true);
 
     const value = this.form.getRawValue();
 
@@ -109,6 +117,7 @@ export class SettingsComponent {
       .subscribe({
         next: (data) => {
           this.profileService.updateMyProfile(data);
+          this.isLoading.set(false);
         },
         error: (err) => {
           console.error(err);

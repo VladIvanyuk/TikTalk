@@ -1,0 +1,7 @@
+<form class="post-input" [formGroup]="formGroup" (ngSubmit)="submit()">
+  <app-avatar [size]="avatarSizes.SM" [url]="me()?.avatarUrl ?? ''" />
+  <app-textarea class="textarea" formControlName="text" rows="1" [isBordered]="false" [placeholder]="placeholder()" />
+  <app-button type="submit">
+    <app-svg-icon icon="send-icon" name="common" />
+  </app-button>
+</form>

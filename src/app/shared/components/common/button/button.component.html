@@ -1,3 +1,6 @@
-<button [class]="'button ' + (isGhost() ? 'ghost' : '')" [class.square]="isSquare()" [type]="type()">
+<button [class]="'button ' + (isGhost() ? 'ghost' : '')" [class.square]="isSquare()" [disabled]="isLoading()" [type]="type()">
+  @if (isLoading()) {
+    <span class="loader"></span>
+  }
   <ng-content />
 </button>

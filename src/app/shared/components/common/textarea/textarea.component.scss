@@ -10,10 +10,11 @@
 
 .textarea {
   width: 100%;
+  height: auto;
   padding: 10px 15px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--primary-white-color);
+
   color: var(--primary-white-color);
   font-weight: 400;
   font-size: 14px;
@@ -22,4 +23,8 @@
   &:focus {
     outline: none;
   }
+}
+
+.bordered {
+  border-bottom: 1px solid var(--primary-white-color);
 }
