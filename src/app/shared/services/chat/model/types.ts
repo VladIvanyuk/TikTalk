@@ -13,4 +13,5 @@ export type Chat = {
   userFirst: Profile;
   userSecond: Profile;
   messages: ChatMessage[];
+  companion: Profile;
 };

@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+
+.companion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
