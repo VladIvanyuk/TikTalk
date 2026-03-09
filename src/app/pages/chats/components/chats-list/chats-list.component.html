@@ -1,0 +1,10 @@
+<div class="list-header">
+  <app-input placeholder="Искать ..." [formControl]="searchControl" />
+</div>
+<ul>
+  @for (chat of chats$ | async; track chat.id) {
+    <li class="chat-btn-wrapper" routerLinkActive="active" [routerLink]="[chat.id]">
+      <app-chat-button [chat]="chat" />
+    </li>
+  }
+</ul>

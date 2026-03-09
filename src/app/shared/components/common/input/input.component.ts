@@ -17,8 +17,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
 })
 export class InputComponent implements ControlValueAccessor {
   readonly inputValue = signal('');
-  readonly label = input();
   readonly isDisabled = signal(false);
+  readonly label = input();
+  readonly placeholder = input();
 
   onChange: (value: string) => void = () => {};
   onTouch: () => void = () => {};
