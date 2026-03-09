@@ -4,8 +4,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SearchComponent } from './pages/search/search.component';
 import { protectedGuard, publicGuard } from 'ngx-auth';
-import { ChatsComponent } from './pages/chats/chats.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { CHAT_ROUTES } from './pages/chats/routes/routes';
 
 export const routes: Routes = [
   {
@@ -14,7 +14,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
       { path: 'search', component: SearchComponent },
-      { path: 'chats', component: ChatsComponent },
+      { path: 'chats', loadChildren: () => CHAT_ROUTES },
       { path: 'profile/:id', component: ProfileComponent },
       { path: 'settings', component: SettingsComponent },
     ],

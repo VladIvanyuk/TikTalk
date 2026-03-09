@@ -1,6 +1,27 @@
 :host {
   display: block;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-purple-color) var(--primary-dark-lighter-color);
+}
+
+:host::-webkit-scrollbar {
+  width: 8px;
+}
+
+:host::-webkit-scrollbar-track {
+  background: var(--primary-dark-lighter-color);
+  border-left: 1px solid var(--primary-white-color);
+}
+
+:host::-webkit-scrollbar-thumb {
+  background: var(--primary-purple-color);
+  border-radius: 999px;
+  border: 2px solid var(--primary-dark-lighter-color);
+}
+
+:host::-webkit-scrollbar-thumb:hover {
+  background: #c09bff;
 }
 
 .post-form {
@@ -72,6 +93,21 @@
     margin-bottom: 16px;
     max-height: 150px;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple-color) var(--primary-dark-lighter-color);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--primary-dark-lighter-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary-purple-color);
+      border-radius: 999px;
+    }
 
     .comment-wrapper {
       width: 100%;

@@ -1,0 +1,13 @@
+<app-avatar [size]="avatarSizes.SM" [url]="chat().userFrom.avatarUrl ?? ''" />
+<div>
+  <div class="message-user">
+    <span>{{ chat().userFrom.firstName }} {{ chat().userFrom.lastName }}</span>
+    <span>{{ chat().createdAt | date: 'dd.MM.yyyy' }}</span>
+  </div>
+  <div class="message-text-wrapper">
+    <p class="message-text">{{ chat().message }}</p>
+    @if (chat().unreadMessages > 0) {
+      <p class="unread-msgs">{{ chat().unreadMessages }}</p>
+    }
+  </div>
+</div>

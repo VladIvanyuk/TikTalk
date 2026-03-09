@@ -3,10 +3,10 @@
 :root {
   // colors
   --primary-dark-color: #000000;
-  --primary-dark-lighter-color: #161616;;
-  --primary-white-color: #FFFFFF;
+  --primary-dark-lighter-color: #161616;
+  --primary-white-color: #ffffff;
   --primary-white-color-opacity: #ffffffaf;
-  --primary-purple-color: #AE7AFF;
+  --primary-purple-color: #ae7aff;
 
   // spacing
   --border-radius-default: 2px;
@@ -45,10 +45,11 @@ li {
   list-style-type: none;
 }
 
-
 body {
   min-height: 100vh;
-  background: url('../public/assets/imgs/background-main.png') no-repeat center center fixed, url('../public/assets/imgs/bg-sand.png') no-repeat center center fixed;
+  background:
+    url('../public/assets/imgs/background-main.png') no-repeat center center fixed,
+    url('../public/assets/imgs/bg-sand.png') no-repeat center center fixed;
   background-size: cover, cover;
   background-color: var(--primary-dark-color);
   color: var(--primary-white-color);

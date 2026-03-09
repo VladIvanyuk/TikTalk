@@ -1,0 +1,20 @@
+:host {
+  width: 100%;
+  max-width: 380px;
+  border-right: 1px solid var(--primary-white-color);
+}
+
+.chat-btn-wrapper {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--primary-white-color);
+}
+
+.active {
+  background-color: var(--primary-dark-lighter-color);
+  color: var(--primary-purple-color);
+}
+
+.list-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--primary-white-color);
+}
