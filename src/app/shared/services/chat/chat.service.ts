@@ -37,6 +37,20 @@ export class ChatService {
     );
   }
 
+  sendMessage(id: number, text: string): Observable<Chat> {
+    return this.http
+      .post<Chat>(
+        BASE_API_URL + `message/send/${id}`,
+        {},
+        {
+          params: {
+            message: text,
+          },
+        },
+      )
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('ChatService error:', error);
     return throwError(() => new Error(error.message));

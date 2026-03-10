@@ -1,3 +1,7 @@
 @if (chat(); as chat) {
   <app-chat-header [companion]="chat.companion" />
+  <div class="messages-wrapper">
+    <div class="messages"></div>
+    <app-post-form placeholder="Напишите что-нибудь" (sendPost)="sendMessage($event)" />
+  </div>
 }

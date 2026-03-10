@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   inject,
   input,
   Renderer2,
   signal,
+  viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
@@ -32,11 +34,15 @@ export class TextareaComponent implements ControlValueAccessor {
   readonly isBordered = input<boolean>(true);
   readonly placeholder = input();
 
+  readonly textAreaRef = viewChild('ref');
+
   onChange: (value: string) => void = () => {};
   onTouch: () => void = () => {};
 
   writeValue(value: string): void {
     this.inputValue.set(value);
+    console.log();
+    this.r2.setStyle((this.textAreaRef() as ElementRef).nativeElement, 'height', `auto`);
   }
 
   registerOnChange(fn: any): void {
@@ -49,7 +55,12 @@ export class TextareaComponent implements ControlValueAccessor {
 
   onInput(event: Event): void {
     const inputElement = event.target as HTMLTextAreaElement;
-    const value = inputElement.value;
+    let value = inputElement.value;
+
+    if (value.includes('\n')) {
+      value = value.replace(/\n/g, '');
+      inputElement.value = value;
+    }
 
     this.r2.setStyle(inputElement, 'height', `auto`);
     this.r2.setStyle(inputElement, 'height', `${inputElement.scrollHeight}px`);

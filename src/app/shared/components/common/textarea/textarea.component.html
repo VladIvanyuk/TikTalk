@@ -1,6 +1,7 @@
 <div class="textarea-wrapper">
   <p class="textarea-label">{{ label() }}</p>
   <textarea
+    #ref
     [class]="{ textarea: true, bordered: isBordered() }"
     [cols]="cols()"
     [placeholder]="placeholder()"
