@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { Chat, ChatMessage } from './model/types';
+import { Chat, MyChatList } from './model/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BASE_API_URL } from '../../constants/constants';
 import { ProfileService } from '../profile/profile.service';
@@ -16,9 +16,9 @@ export class ChatService {
     return this.http.post<Chat>(BASE_API_URL + `chat/${id}`, {}).pipe(catchError(this.handleError));
   }
 
-  getMyChats(): Observable<ChatMessage[]> {
+  getMyChats(): Observable<MyChatList[]> {
     return this.http
-      .get<ChatMessage[]>(BASE_API_URL + 'chat/get_my_chats/')
+      .get<MyChatList[]>(BASE_API_URL + 'chat/get_my_chats/')
       .pipe(catchError(this.handleError));
   }
 

@@ -1,30 +1,36 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
   inject,
   OnInit,
+  Renderer2,
   signal,
 } from '@angular/core';
 import { ChatHeaderComponent } from './chat-header/chat-header.component';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../../../../shared/services/chat/chat.service';
-import { startWith, Subject, switchMap } from 'rxjs';
+import { fromEvent, startWith, Subject, switchMap, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Chat } from '../../../../shared/services/chat/model/types';
 import { PostFormComponent } from '../../../../shared/components/post-form/post-form.component';
+import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
 
 @Component({
   selector: 'app-chat-workspace',
-  imports: [ChatHeaderComponent, PostFormComponent],
+  imports: [ChatHeaderComponent, PostFormComponent, ChatMessagesComponent],
   templateUrl: './chat-workspace.component.html',
   styleUrl: './chat-workspace.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatWorkspaceComponent implements OnInit {
+export class ChatWorkspaceComponent implements OnInit, AfterViewInit {
   private readonly route = inject(ActivatedRoute);
   private readonly chatService = inject(ChatService);
   private readonly destroyRef = inject(DestroyRef);
+  readonly hostElement = inject(ElementRef);
+  readonly r2 = inject(Renderer2);
 
   readonly fetchChatTrigger$ = new Subject<void>();
   readonly sendMessageTrigger$ = new Subject<string>();
@@ -50,6 +56,23 @@ export class ChatWorkspaceComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchChat();
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeFeedList();
+
+    fromEvent(window, 'resize')
+      .pipe(throttleTime(300), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.resizeFeedList();
+      });
+  }
+
+  private resizeFeedList(): void {
+    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
+
+    const height = window.innerHeight - top - 48;
+    this.r2.setStyle(this.hostElement.nativeElement, 'height', height + 'px');
   }
 
   fetchChat(): void {
