@@ -1,4 +1,9 @@
 :host {
+  display: block;
+  width: 100%;
+}
+
+.chat {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,22 +13,22 @@
   scrollbar-color: var(--primary-purple-color) var(--primary-dark-lighter-color);
 }
 
-:host::-webkit-scrollbar {
+.chat::-webkit-scrollbar {
   width: 8px;
 }
 
-:host::-webkit-scrollbar-track {
+.chat::-webkit-scrollbar-track {
   background: var(--primary-dark-lighter-color);
   border-left: 1px solid var(--primary-white-color);
 }
 
-:host::-webkit-scrollbar-thumb {
+.chat::-webkit-scrollbar-thumb {
   background: var(--primary-purple-color);
   border-radius: 999px;
   border: 2px solid var(--primary-dark-lighter-color);
 }
 
-:host::-webkit-scrollbar-thumb:hover {
+.chat::-webkit-scrollbar-thumb:hover {
   background: #c09bff;
 }
 
