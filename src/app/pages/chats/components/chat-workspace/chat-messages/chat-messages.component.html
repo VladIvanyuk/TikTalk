@@ -1,38 +1,38 @@
 @if (chat(); as chat) {
-  @for (messages of filterredByDateMessages(); track $index) {
-    <div class="date-separator">{{ messages.date | date: 'dd.MM.yyyy' }}</div>
-    @for (message of messages.messages; track $index) {
-      @if (message.userFromId === chat.companion.id) {
-        <div class="message message-companion">
-          <div class="message-content message-content--companion">
-            <app-avatar [size]="avatarSizes.SM" [url]="chat.companion.avatarUrl ?? ''" />
-            <div class="message-content-wrapper--companion">
-              <div class="message-user-header message-user-header--companion">
-                <span>{{ chat.companion.firstName }} {{ chat.companion.lastName }}</span>
-                <span>{{ message.createdAt | date: 'hh:mm' }}</span>
-              </div>
-              <div class="message-text message-text--companion">
-                <p>{{ message.text }}</p>
-              </div>
+  @for (message of chat.messages; track message.id; let index = $index) {
+    @if (!isLastMessageSame(index, message.createdAt)) {
+      <div class="date-separator">{{ message.createdAt | date: 'dd.MM.yyyy' }}</div>
+    }
+    @if (message.userFromId === chat.companion.id) {
+      <div class="message message-companion">
+        <div class="message-content message-content--companion">
+          <app-avatar [size]="avatarSizes.SM" [url]="chat.companion.avatarUrl ?? ''" />
+          <div class="message-content-wrapper--companion">
+            <div class="message-user-header message-user-header--companion">
+              <span>{{ chat.companion.firstName }} {{ chat.companion.lastName }}</span>
+              <span>{{ message.createdAt | date: 'hh:mm' }}</span>
+            </div>
+            <div class="message-text message-text--companion">
+              <p>{{ message.text }}</p>
             </div>
           </div>
         </div>
-      } @else {
-        <div class="message message-user">
-          <div class="message-content message-content--user">
-            <app-avatar [size]="avatarSizes.SM" [url]="myProfile()?.avatarUrl ?? ''" />
-            <div class="message-content-wrapper--user">
-              <div class="message-user-header message-user-header--user">
-                <span>{{ myProfile()?.firstName }} {{ myProfile()?.lastName }}</span>
-                <span>{{ message.createdAt | date: 'hh:mm' }}</span>
-              </div>
-              <div class="message-text message-text--user">
-                <p>{{ message.text }}</p>
-              </div>
+      </div>
+    } @else {
+      <div class="message message-user">
+        <div class="message-content message-content--user">
+          <app-avatar [size]="avatarSizes.SM" [url]="myProfile()?.avatarUrl ?? ''" />
+          <div class="message-content-wrapper--user">
+            <div class="message-user-header message-user-header--user">
+              <span>{{ myProfile()?.firstName }} {{ myProfile()?.lastName }}</span>
+              <span>{{ message.createdAt | date: 'hh:mm' }}</span>
+            </div>
+            <div class="message-text message-text--user">
+              <p>{{ message.text }}</p>
             </div>
           </div>
         </div>
-      }
+      </div>
     }
   }
 }
