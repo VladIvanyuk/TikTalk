@@ -70,3 +70,14 @@
     align-items: flex-end;
   }
 }
+
+.date-separator {
+  font-weight: 700;
+  padding: 6px 30px;
+  margin: 15px auto;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--primary-white-color);
+  background-color: var(--primary-dark-lighter-color);
+}
