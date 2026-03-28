@@ -1,4 +1,4 @@
-import { avatarSizes } from './../../../../shared/types/components.types';
+import { avatarSizes } from '@tt/shared';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -10,13 +10,13 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { PostFormComponent } from '../../../../shared/components/post-form/post-form.component';
-import { PostsService } from '../../../../shared/services/posts/posts.service';
-import { ProfileService } from '../../../../shared/services/profile/profile.service';
-import { Post } from '../../../../shared/services/posts/model/types';
-import { AvatarComponent } from '../../../../shared/components/common/avatar/avatar.component';
+import { PostFormComponent } from '@tt/shared';
+import { PostsService } from '@tt/shared';
+import { ProfileService } from '@tt/shared';
+import { Post } from '@tt/shared';
+import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
-import { SvgIconComponent } from '../../../../shared/components/common/svg-icon/svg-icon.component';
+import { SvgIconComponent } from '@tt/shared';
 import { fromEvent, Observable, switchMap, tap, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

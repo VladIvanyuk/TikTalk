@@ -8,10 +8,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth/auth.service';
-import { ButtonComponent } from '../../shared/components/common/button/button.component';
+import { AuthService } from '@tt/shared';
+import { ButtonComponent } from '@tt/shared';
 import { HttpResponseBase } from '@angular/common/http';
-import { UNAUTHORIZED_RESPONS_STATUS } from '../../shared/constants/constants';
+import { UNAUTHORIZED_RESPONS_STATUS } from '@tt/shared';
 
 export type LoginFormGroup = {
   username: FormControl<string>;

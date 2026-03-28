@@ -1,17 +1,17 @@
-import { avatarSizes } from './../../shared/types/components.types';
+import { avatarSizes } from '@tt/shared';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileService } from '../../shared/services/profile/profile.service';
+import { ProfileService } from '@tt/shared';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { finalize, map, switchMap } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { ProfileHeaderComponent } from '../../shared/components/profile-header/profile-header.component';
-import { ButtonComponent } from '../../shared/components/common/button/button.component';
-import { SvgIconComponent } from '../../shared/components/common/svg-icon/svg-icon.component';
-import { AvatarComponent } from '../../shared/components/common/avatar/avatar.component';
-import { TagComponent } from '../../shared/components/common/tag/tag.component';
+import { ProfileHeaderComponent } from '@tt/shared';
+import { ButtonComponent } from '@tt/shared';
+import { SvgIconComponent } from '@tt/shared';
+import { AvatarComponent } from '@tt/shared';
+import { TagComponent } from '@tt/shared';
 import { PostsFeedComponent } from './components/posts-feed/posts-feed.component';
-import { ChatService } from '../../shared/services/chat/chat.service';
+import { ChatService } from '@tt/shared';
 
 @Component({
   selector: 'app-profile',

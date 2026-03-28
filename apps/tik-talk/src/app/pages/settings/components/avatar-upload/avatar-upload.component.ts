@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
-import { SvgIconComponent } from '../../../../shared/components/common/svg-icon/svg-icon.component';
-import { DragAndDropDirective } from '../../../../shared/directives/drag-and-drop.directive';
+import { SvgIconComponent } from '@tt/shared';
+import { DragAndDropDirective } from '@tt/shared';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

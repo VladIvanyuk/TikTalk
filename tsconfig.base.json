@@ -11,13 +11,14 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "paths": {},
-    "baseUrl": ".",
-    "rootDir": "."
+    "paths": {
+      "@tt/shared": ["libs/shared/src/index.ts"]
+    },
+    "baseUrl": "."
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

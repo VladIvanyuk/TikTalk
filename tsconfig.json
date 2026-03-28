@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/tik-talk/tsconfig.app.json"
+    },
+    {
+      "path": "./libs/shared/tsconfig.lib.json"
+    }
+  ]
+}

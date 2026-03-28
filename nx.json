@@ -28,5 +28,14 @@
     }
   },
   "analytics": true,
-  "nxCloudId": "69c5e82cb3b1dd865f909e6f"
+  "nxCloudId": "69c5e82cb3b1dd865f909e6f",
+  "generators": {
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "none"
+    },
+    "@nx/angular:component": {
+      "style": "css"
+    }
+  }
 }

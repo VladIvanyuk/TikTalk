@@ -1,7 +1,7 @@
-import { avatarSizes } from './../../../../../shared/types/components.types';
+import { avatarSizes } from '@tt/shared';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AvatarComponent } from '../../../../../shared/components/common/avatar/avatar.component';
-import { ChatMessage } from '../../../../../shared/services/chat/model/types';
+import { AvatarComponent } from '@tt/shared';
+import { ChatMessage } from '@tt/shared';
 import { DatePipe } from '@angular/common';
 
 @Component({

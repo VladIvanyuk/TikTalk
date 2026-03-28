@@ -7,9 +7,9 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ProfileCardComponent } from '../../shared/components/profile-card/profile-card.component';
-import { ProfileService } from '../../shared/services/profile/profile.service';
-import { Profile } from '../../shared/types/profiles.types';
+import { ProfileCardComponent } from '@tt/shared';
+import { ProfileService } from '@tt/shared';
+import { Profile } from '@tt/shared';
 
 @Component({
   selector: 'app-search',

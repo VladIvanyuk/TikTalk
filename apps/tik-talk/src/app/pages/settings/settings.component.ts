@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileService } from '../../shared/services/profile/profile.service';
+import { ProfileService } from '@tt/shared';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { ProfileHeaderComponent } from '../../shared/components/profile-header/profile-header.component';
-import { avatarSizes } from '../../shared/types/components.types';
+import { ProfileHeaderComponent } from '@tt/shared';
+import { avatarSizes } from '@tt/shared';
 import {
   FormBuilder,
   FormControl,
@@ -12,13 +12,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputComponent } from '../../shared/components/common/input/input.component';
-import { TextareaComponent } from '../../shared/components/common/textarea/textarea.component';
-import { ButtonComponent } from '../../shared/components/common/button/button.component';
+import { InputComponent } from '@tt/shared';
+import { TextareaComponent } from '@tt/shared';
+import { ButtonComponent } from '@tt/shared';
 import { RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
 import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
-import { StackInputComponent } from '../../shared/components/common/stack-input/stack-input.component';
+import { StackInputComponent } from '@tt/shared';
 
 type SettingsForm = {
   firstName: FormControl<string>;

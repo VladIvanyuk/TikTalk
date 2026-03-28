@@ -3,8 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { AuthService } from './shared/services/auth/auth.service';
-import { AuthTokenInterceptor } from './shared/interceptors/auth.interceptor';
 import {
   AUTH_SERVICE,
   AuthModule,
@@ -12,6 +10,7 @@ import {
   PUBLIC_FALLBACK_PAGE_URI,
 } from 'ngx-auth';
 import { importProvidersFrom } from '@angular/core';
+import { AuthService, AuthTokenInterceptor } from '@tt/shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [
