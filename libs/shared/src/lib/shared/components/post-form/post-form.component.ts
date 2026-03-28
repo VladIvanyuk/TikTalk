@@ -52,7 +52,10 @@ export class PostFormComponent {
     return this.formGroup.get('text') as AbstractControl;
   }
 
-  submit(): void {
+  submit(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
     this.sendPost.emit(this.postTextControl.value);
     this.postTextControl.patchValue('');
   }

@@ -1,8 +1,8 @@
 import { avatarSizes } from '@tt/shared';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AvatarComponent } from '@tt/shared';
-import { ChatMessage } from '@tt/shared';
 import { DatePipe } from '@angular/common';
+import { MyChatList } from '@tt/shared';
 
 @Component({
   selector: 'app-chat-button',
@@ -12,6 +12,6 @@ import { DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatButtonComponent {
-  readonly chat = input.required<ChatMessage>();
+  readonly chat = input.required<MyChatList>();
   avatarSizes = avatarSizes;
 }

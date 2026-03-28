@@ -1,6 +1,12 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
 .avatar {
   font-size: 0;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .small {
@@ -21,13 +27,4 @@
 .large {
   width: 140px;
   height: 140px;
-}
-
-.small {
-  width: 32px;
-  height: 32px;
-}
-
-.avatar {
-  object-fit: cover;
 }

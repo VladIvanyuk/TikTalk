@@ -2,8 +2,8 @@ import { Profile } from '../../../types/profiles.types';
 
 export type ChatMessage = {
   id: number;
-  userFrom: Profile;
-  message: string;
+  userFromId: number;
+  text: string;
   createdAt: string;
   unreadMessages: number;
 };
@@ -13,4 +13,13 @@ export type Chat = {
   userFirst: Profile;
   userSecond: Profile;
   messages: ChatMessage[];
+  companion: Profile;
+};
+
+export type MyChatList = {
+  id: number;
+  userFrom: Profile;
+  message: string;
+  createdAt: string;
+  unreadMessages: number;
 };
