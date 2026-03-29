@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '@tt/shared';
+import { AuthService } from '@tt/auth';
 import { ButtonComponent } from '@tt/shared';
 import { HttpResponseBase } from '@angular/common/http';
 import { UNAUTHORIZED_RESPONS_STATUS } from '@tt/shared';

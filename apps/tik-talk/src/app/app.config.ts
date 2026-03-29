@@ -10,7 +10,7 @@ import {
   PUBLIC_FALLBACK_PAGE_URI,
 } from 'ngx-auth';
 import { importProvidersFrom } from '@angular/core';
-import { AuthService, AuthTokenInterceptor } from '@tt/shared';
+import { AuthService, AuthTokenInterceptor } from '@tt/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [

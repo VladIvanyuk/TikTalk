@@ -5,7 +5,6 @@ export * from './common/stack-input/stack-input.component';
 export * from './common/svg-icon/svg-icon.component';
 export * from './common/tag/tag.component';
 export * from './common/textarea/textarea.component';
-export * from '../../../../../profile/src/lib/profile/feat-posts/post-form/post-form.component';
 export * from './profile-card/profile-card.component';
 export * from './profile-header/profile-header.component';
 export * from './user-preview/user-preview.component';

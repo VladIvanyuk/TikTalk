@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Tokens } from '../../types/auth.types';
+import { Tokens } from '@tt/shared';
 
 @Injectable({
   providedIn: 'root',

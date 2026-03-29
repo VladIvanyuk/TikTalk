@@ -17,8 +17,8 @@ import { ChatService } from '../../services';
 import { fromEvent, startWith, Subject, switchMap, throttleTime, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Chat } from '../../services/chat/model/types';
-import { PostFormComponent } from '@tt/shared';
 import { ChatMessagesComponent } from '../chat-messages/chat-messages.component';
+import { PostFormComponent } from '@tt/posts';
 
 @Component({
   selector: 'app-chat-workspace',

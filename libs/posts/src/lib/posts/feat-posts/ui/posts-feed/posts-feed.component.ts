@@ -10,15 +10,15 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { PostFormComponent } from '@tt/shared';
 import { PostsService } from '@tt/shared';
-import { ProfileService } from '../../../services';
+import { ProfileService } from '@tt/profile';
 import { Post } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
 import { SvgIconComponent } from '@tt/shared';
 import { fromEvent, Observable, switchMap, tap, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PostFormComponent } from '../../post-form/post-form.component';
 
 @Component({
   selector: 'app-posts-feed',

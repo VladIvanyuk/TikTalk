@@ -18,7 +18,7 @@ import {
   take,
   throwError,
 } from 'rxjs';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 
 export const refreshInProgress = signal(false);
 const delay$ = new Subject<boolean>();

@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BASE_API_URL } from '../../constants/constants';
+import { BASE_API_URL } from '@tt/shared';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
-import { Tokens } from '../../types/auth.types';
+import { Tokens } from '@tt/shared';
 import { AuthService as NgxAuthService } from 'ngx-auth';
 import { Router } from '@angular/router';
 import { AuthCookieService } from './auth-cookie.service';

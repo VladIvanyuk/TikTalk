@@ -9,8 +9,8 @@ import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { TagComponent } from '@tt/shared';
-import { PostsFeedComponent } from '../../../feat-posts/ui/posts-feed/posts-feed.component';
 import { ProfileService } from '../../../services';
+import { PostsFeedComponent } from '@tt/posts';
 
 @Component({
   selector: 'app-profile',
