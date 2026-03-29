@@ -1,10 +1,6 @@
-import { avatarSizes } from '../../types/components.types';
 import { ProfileService } from '@tt/profile';
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { TextareaComponent } from '../common/textarea/textarea.component';
-import { AvatarComponent } from '../common/avatar/avatar.component';
-import { ButtonComponent } from '../common/button/button.component';
-import { SvgIconComponent } from '../common/svg-icon/svg-icon.component';
+
 import {
   AbstractControl,
   FormBuilder,
@@ -12,6 +8,10 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { avatarSizes, TextareaComponent } from '@tt/shared';
+import { AvatarComponent } from '@tt/shared';
+import { ButtonComponent } from '@tt/shared';
+import { SvgIconComponent } from '@tt/shared';
 
 type PostForm = {
   text: FormControl;

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from '@tt/shared';
+import { LayoutComponent } from '@tt/layout';
 import { protectedGuard, publicGuard } from 'ngx-auth';
 import { CHAT_ROUTES } from '@tt/chats';
 import { SearchComponent } from '@tt/search';

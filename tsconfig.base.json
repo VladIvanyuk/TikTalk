@@ -21,7 +21,8 @@
       "@tt/search": ["libs/search/src/index.ts"],
       "@tt/settings": ["libs/settings/src/index.ts"],
       "@tt/profile": ["libs/profile/src/index.ts"],
-      "@tt/auth": ["libs/auth/src/index.ts"]
+      "@tt/auth": ["libs/auth/src/index.ts"],
+      "@tt/layout": ["libs/layout/src/index.ts"]
     },
     "baseUrl": "."
   },

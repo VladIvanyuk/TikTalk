@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { SvgIconComponent } from '../common/svg-icon/svg-icon.component';
+import { SvgIconComponent } from '@tt/shared';
 import { sidebarMenu } from './models/menu';
 import { ProfileService } from '@tt/profile';
-import { UserPreviewComponent } from '../user-preview/user-preview.component';
+import { UserPreviewComponent } from '@tt/shared';
 import { firstValueFrom, map } from 'rxjs';
-import { AvatarComponent } from '../common/avatar/avatar.component';
-import { avatarSizes } from '../../types/components.types';
+import { AvatarComponent } from '@tt/shared';
+import { avatarSizes } from '@tt/shared';
 
 @Component({
   selector: 'app-sidebar',

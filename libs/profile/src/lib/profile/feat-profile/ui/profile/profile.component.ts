@@ -1,15 +1,14 @@
 import { avatarSizes } from '@tt/shared';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { finalize, map, switchMap } from 'rxjs';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ProfileHeaderComponent } from '@tt/shared';
 import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { TagComponent } from '@tt/shared';
-import { ChatService } from '@tt/chats';
 import { PostsFeedComponent } from '../../../feat-posts/ui/posts-feed/posts-feed.component';
 import { ProfileService } from '../../../services';
 
@@ -32,9 +31,6 @@ import { ProfileService } from '../../../services';
 export class ProfileComponent {
   private readonly profileService = inject(ProfileService);
   private readonly route = inject(ActivatedRoute);
-  private readonly chatService = inject(ChatService);
-  private readonly router = inject(Router);
-  private readonly destroyRef = inject(DestroyRef);
 
   readonly subsLoading = signal(false);
   readonly isMyPage = signal(false);
@@ -74,12 +70,7 @@ export class ProfileComponent {
     }),
   );
 
-  createChat(id: number): void {
-    this.chatService
-      .createChat(id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((chat) => {
-        this.router.navigate(['chats', chat.id]);
-      });
+  createChat(): void {
+    console.log('createChat');
   }
 }
