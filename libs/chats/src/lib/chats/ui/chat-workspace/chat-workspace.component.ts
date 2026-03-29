@@ -11,14 +11,14 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { ChatHeaderComponent } from './chat-header/chat-header.component';
+import { ChatHeaderComponent } from '../chat-header/chat-header.component';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '@tt/shared';
 import { fromEvent, startWith, Subject, switchMap, throttleTime, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Chat } from '@tt/shared';
 import { PostFormComponent } from '@tt/shared';
-import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
+import { ChatMessagesComponent } from '../chat-messages/chat-messages.component';
 
 @Component({
   selector: 'app-chat-workspace',

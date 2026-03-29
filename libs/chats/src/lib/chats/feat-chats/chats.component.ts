@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ChatsListComponent } from './components/chats-list/chats-list.component';
+import { ChatsListComponent } from './chats-list/chats-list.component';
 
 @Component({
   selector: 'app-chats',

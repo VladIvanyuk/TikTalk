@@ -16,7 +16,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@tt/shared": ["libs/shared/src/index.ts"]
+      "@tt/shared": ["libs/shared/src/index.ts"],
+      "@tt/chats": ["libs/chats/src/index.ts"]
     },
     "baseUrl": "."
   },

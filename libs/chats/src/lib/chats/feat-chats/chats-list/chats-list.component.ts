@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ChatService } from '@tt/shared';
 import { AsyncPipe } from '@angular/common';
 import { map, startWith, switchMap } from 'rxjs';
-import { ChatButtonComponent } from './chat-button/chat-button.component';
 import { InputComponent } from '@tt/shared';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ChatButtonComponent } from '../../ui/chat-button/chat-button.component';
 
 @Component({
   selector: 'app-chats-list',

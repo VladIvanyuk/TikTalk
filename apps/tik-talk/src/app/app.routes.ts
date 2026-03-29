@@ -5,7 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SearchComponent } from './pages/search/search.component';
 import { protectedGuard, publicGuard } from 'ngx-auth';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { CHAT_ROUTES } from './pages/chats/routes/routes';
+import { CHAT_ROUTES } from '@tt/chats';
 
 export const routes: Routes = [
   {
