@@ -17,8 +17,8 @@ import { TextareaComponent } from '@tt/shared';
 import { ButtonComponent } from '@tt/shared';
 import { RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
-import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 import { StackInputComponent } from '@tt/shared';
+import { AvatarUploadComponent } from '../../../feat-avatar-upload/ui/avatar-upload/avatar-upload.component';
 
 type SettingsForm = {
   firstName: FormControl<string>;
