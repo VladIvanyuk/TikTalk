@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { Chat } from '@tt/shared';
-import { ProfileService } from '@tt/shared';
+import { Chat } from '../../services/chat/model/types';
 import { AvatarComponent } from '@tt/shared';
 import { avatarSizes } from '@tt/shared';
 import { DatePipe } from '@angular/common';
+import { ProfileService } from '@tt/profile';
 
 @Component({
   selector: 'app-chat-messages',

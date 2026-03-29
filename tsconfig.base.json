@@ -19,7 +19,9 @@
       "@tt/shared": ["libs/shared/src/index.ts"],
       "@tt/chats": ["libs/chats/src/index.ts"],
       "@tt/search": ["libs/search/src/index.ts"],
-      "@tt/settings": ["libs/settings/src/index.ts"]
+      "@tt/settings": ["libs/settings/src/index.ts"],
+      "@tt/profile": ["libs/profile/src/index.ts"],
+      "@tt/auth": ["libs/auth/src/index.ts"]
     },
     "baseUrl": "."
   },

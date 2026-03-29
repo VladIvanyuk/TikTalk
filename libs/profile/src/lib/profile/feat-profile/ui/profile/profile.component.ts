@@ -1,6 +1,5 @@
 import { avatarSizes } from '@tt/shared';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileService } from '@tt/shared';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { finalize, map, switchMap } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -10,8 +9,9 @@ import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { TagComponent } from '@tt/shared';
-import { PostsFeedComponent } from './components/posts-feed/posts-feed.component';
-import { ChatService } from '@tt/shared';
+import { ChatService } from '@tt/chats';
+import { PostsFeedComponent } from '../../../feat-posts/ui/posts-feed/posts-feed.component';
+import { ProfileService } from '../../../services';
 
 @Component({
   selector: 'app-profile',

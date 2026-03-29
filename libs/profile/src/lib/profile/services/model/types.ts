@@ -1,4 +1,4 @@
-import { Profile } from '../../../types/profiles.types';
+import { Profile } from '@tt/shared';
 
 export type SubscribersPagination = {
   items: Profile[];

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProfileCardComponent } from '@tt/shared';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '@tt/profile';
 import { Profile } from '@tt/shared';
 
 @Component({

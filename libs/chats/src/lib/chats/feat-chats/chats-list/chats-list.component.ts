@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ChatService } from '@tt/shared';
+import { ChatService } from '../../services';
 import { AsyncPipe } from '@angular/common';
 import { map, startWith, switchMap } from 'rxjs';
 import { InputComponent } from '@tt/shared';

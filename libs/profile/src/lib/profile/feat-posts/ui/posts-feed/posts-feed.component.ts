@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { PostFormComponent } from '@tt/shared';
 import { PostsService } from '@tt/shared';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '../../../services';
 import { Post } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';

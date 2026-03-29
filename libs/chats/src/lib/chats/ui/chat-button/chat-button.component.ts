@@ -2,7 +2,7 @@ import { avatarSizes } from '@tt/shared';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
-import { MyChatList } from '@tt/shared';
+import { MyChatList } from '../../services/chat/model/types';
 
 @Component({
   selector: 'app-chat-button',

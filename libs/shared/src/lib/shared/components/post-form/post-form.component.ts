@@ -1,5 +1,5 @@
 import { avatarSizes } from '../../types/components.types';
-import { ProfileService } from '../../services/profile/profile.service';
+import { ProfileService } from '@tt/profile';
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { TextareaComponent } from '../common/textarea/textarea.component';
 import { AvatarComponent } from '../common/avatar/avatar.component';

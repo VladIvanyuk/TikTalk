@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Chat, MyChatList } from './model/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BASE_API_URL } from '../../constants/constants';
-import { ProfileService } from '../profile/profile.service';
+import { BASE_API_URL } from '@tt/shared';
+import { ProfileService } from '@tt/profile';
 
 @Injectable({
   providedIn: 'root',

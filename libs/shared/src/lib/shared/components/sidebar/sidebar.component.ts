@@ -3,7 +3,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SvgIconComponent } from '../common/svg-icon/svg-icon.component';
 import { sidebarMenu } from './models/menu';
-import { ProfileService } from '../../services/profile/profile.service';
+import { ProfileService } from '@tt/profile';
 import { UserPreviewComponent } from '../user-preview/user-preview.component';
 import { firstValueFrom, map } from 'rxjs';
 import { AvatarComponent } from '../common/avatar/avatar.component';

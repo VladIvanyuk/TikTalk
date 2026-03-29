@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, Signal, signal } from '@angular/core';
-import { BASE_API_URL } from '../../constants/constants';
-import { Profile } from '../../types/profiles.types';
+import { BASE_API_URL } from '@tt/shared';
+import { Profile } from '@tt/shared';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { SubscribersPagination, UserUpdateData } from './model/types';
 

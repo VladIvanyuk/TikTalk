@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '@tt/profile';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ProfileHeaderComponent } from '@tt/shared';
