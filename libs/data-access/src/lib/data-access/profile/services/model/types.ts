@@ -1,0 +1,23 @@
+import { Profile } from '@tt/shared';
+
+export type SubscribersPagination = {
+  items: Profile[];
+  page: number;
+  pages: number;
+  size: number;
+  total: number;
+};
+
+export type UserUpdateData = {
+  firstName: string;
+  lastName: string;
+  // stack: [string];
+  // city: string;
+  description: string;
+};
+
+export type SearchForm = {
+  firstName: string;
+  lastName: string;
+  stack: string[];
+};

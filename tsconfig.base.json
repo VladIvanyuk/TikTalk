@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "paths": {
+      "@tt/shared": ["libs/shared/src/index.ts"],
+      "@tt/chats": ["libs/chats/src/index.ts"],
+      "@tt/search": ["libs/search/src/index.ts"],
+      "@tt/settings": ["libs/settings/src/index.ts"],
+      "@tt/profile": ["libs/profile/src/index.ts"],
+      "@tt/auth": ["libs/auth/src/index.ts"],
+      "@tt/layout": ["libs/layout/src/index.ts"],
+      "@tt/posts": ["libs/posts/src/index.ts"],
+      "@tt/data-access": ["libs/data-access/src/index.ts"]
+    },
+    "baseUrl": "."
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}
