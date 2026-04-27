@@ -3,14 +3,14 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { Chat, MyChatList } from './model/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BASE_API_URL } from '@tt/shared';
-import { ProfileService } from '@tt/profile';
+import { ProfileDataService } from '@tt/data-access';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
   private readonly http = inject(HttpClient);
-  private readonly profileService = inject(ProfileService);
+  private readonly profileDataService = inject(ProfileDataService);
 
   createChat(id: number): Observable<Chat> {
     return this.http.post<Chat>(BASE_API_URL + `chat/${id}`, {}).pipe(catchError(this.handleError));
@@ -28,7 +28,7 @@ export class ChatService {
         return {
           ...chat,
           companion:
-            chat.userFirst.id === this.profileService.myProfile()?.id
+            chat.userFirst.id === this.profileDataService.myProfile()?.id
               ? chat.userSecond
               : chat.userFirst,
         };

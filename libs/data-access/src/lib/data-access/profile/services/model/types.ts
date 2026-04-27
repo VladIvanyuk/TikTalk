@@ -15,3 +15,9 @@ export type UserUpdateData = {
   // city: string;
   description: string;
 };
+
+export type SearchForm = {
+  firstName: string;
+  lastName: string;
+  stack: string[];
+};

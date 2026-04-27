@@ -3,7 +3,7 @@ import { Chat } from '../../services/chat/model/types';
 import { AvatarComponent } from '@tt/shared';
 import { avatarSizes } from '@tt/shared';
 import { DatePipe } from '@angular/common';
-import { ProfileService } from '@tt/profile';
+import { ProfileDataService } from '@tt/data-access';
 
 @Component({
   selector: 'app-chat-messages',
@@ -14,7 +14,7 @@ import { ProfileService } from '@tt/profile';
 })
 export class ChatMessagesComponent {
   readonly chat = input.required<Chat>();
-  readonly myProfile = inject(ProfileService).myProfile;
+  readonly myProfile = inject(ProfileDataService).myProfile;
 
   readonly avatarSizes = avatarSizes;
 

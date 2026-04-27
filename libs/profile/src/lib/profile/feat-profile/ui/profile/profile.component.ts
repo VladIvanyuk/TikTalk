@@ -9,7 +9,7 @@ import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { TagComponent } from '@tt/shared';
-import { ProfileService } from '../../../services';
+import { ProfileDataService } from '@tt/data-access';
 import { PostsFeedComponent } from '@tt/posts';
 
 @Component({
@@ -29,7 +29,7 @@ import { PostsFeedComponent } from '@tt/posts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent {
-  private readonly profileService = inject(ProfileService);
+  private readonly profileDataService = inject(ProfileDataService);
   private readonly route = inject(ActivatedRoute);
 
   readonly subsLoading = signal(false);
@@ -37,15 +37,15 @@ export class ProfileComponent {
 
   readonly avatarSizes = avatarSizes;
 
-  private readonly me$ = toObservable(this.profileService.myProfile);
+  private readonly me$ = toObservable(this.profileDataService.myProfile);
 
   readonly subs$ = this.route.params.pipe(
     switchMap(({ id }) => {
       this.subsLoading.set(true);
       const method =
         id === 'me'
-          ? this.profileService.getMySubscribers()
-          : this.profileService.getSubscribers(id);
+          ? this.profileDataService.getMySubscribers()
+          : this.profileDataService.getSubscribers(id);
 
       return method.pipe(
         map((data) => {
@@ -66,7 +66,7 @@ export class ProfileComponent {
       }
 
       this.isMyPage.set(false);
-      return this.profileService.getUser(id);
+      return this.profileDataService.getUser(id);
     }),
   );
 

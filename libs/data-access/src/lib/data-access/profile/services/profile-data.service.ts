@@ -1,21 +1,26 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, Signal, signal } from '@angular/core';
-import { BASE_API_URL } from '@tt/shared';
+import { BASE_API_URL, Pageable } from '@tt/shared';
 import { Profile } from '@tt/shared';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import { SubscribersPagination, UserUpdateData } from './model/types';
+import { SearchForm, SubscribersPagination, UserUpdateData } from './model/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class ProfileDataService {
   private readonly http = inject(HttpClient);
   private readonly me = signal<Profile | null>(null);
 
-  getProfilesData(): Observable<Profile[]> {
+  getProfilesData(data: SearchForm): Observable<Profile[]> {
     return this.http
-      .get<Profile[]>(BASE_API_URL + 'account/test_accounts')
-      .pipe(catchError(this.handleError));
+      .get<
+        Pageable<Profile>
+      >(BASE_API_URL + `account/accounts?firstName=${data.firstName}&lastName=${data.lastName}&stack=${data.stack.join(',')}`)
+      .pipe(
+        map((data) => data.items),
+        catchError(this.handleError),
+      );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

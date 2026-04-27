@@ -11,7 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { PostsService } from '@tt/shared';
-import { ProfileService } from '@tt/profile';
+import { ProfileDataService } from '@tt/data-access';
 import { Post } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
@@ -30,7 +30,7 @@ import { PostFormComponent } from '../../post-form/post-form.component';
 export class PostsFeedComponent implements OnInit, AfterViewInit {
   private readonly postsService = inject(PostsService);
   readonly avatarSizes = avatarSizes;
-  readonly me = inject(ProfileService).myProfile;
+  readonly me = inject(ProfileDataService).myProfile;
   readonly posts = signal<Post[]>([]);
   readonly destroyRef = inject(DestroyRef);
 

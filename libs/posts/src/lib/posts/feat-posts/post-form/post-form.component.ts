@@ -1,4 +1,3 @@
-import { ProfileService } from '@tt/profile';
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 
 import {
@@ -12,6 +11,7 @@ import { avatarSizes, TextareaComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
+import { ProfileDataService } from '@tt/data-access';
 
 type PostForm = {
   text: FormControl;
@@ -32,7 +32,7 @@ type PostForm = {
 })
 export class PostFormComponent {
   private readonly fb = inject(FormBuilder);
-  readonly me = inject(ProfileService).myProfile;
+  readonly me = inject(ProfileDataService).myProfile;
 
   readonly placeholder = input();
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileService } from '@tt/profile';
+import { ProfileDataService } from '@tt/data-access';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ProfileHeaderComponent } from '@tt/shared';
@@ -47,14 +47,14 @@ type SettingsForm = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
-  private readonly profileService = inject(ProfileService);
+  private readonly profileDataService = inject(ProfileDataService);
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
   private readonly avatar = signal<File | null>(null);
 
   readonly isLoading = signal(false);
 
-  readonly me$ = toObservable(this.profileService.myProfile).pipe(
+  readonly me$ = toObservable(this.profileDataService.myProfile).pipe(
     tap((data) => {
       if (data) {
         this.form.patchValue({
@@ -98,12 +98,12 @@ export class SettingsComponent {
     const value = this.form.getRawValue();
 
     if (this.avatar()) {
-      this.profileService
+      this.profileDataService
         .updateAvatar(this.avatar()!)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: (data) => {
-            this.profileService.updateMyProfile(data);
+            this.profileDataService.updateMyProfile(data);
           },
           error: (err) => {
             console.error(err);
@@ -111,12 +111,12 @@ export class SettingsComponent {
         });
     }
 
-    this.profileService
+    this.profileDataService
       .updateMe(value)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (data) => {
-          this.profileService.updateMyProfile(data);
+          this.profileDataService.updateMyProfile(data);
           this.isLoading.set(false);
         },
         error: (err) => {

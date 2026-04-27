@@ -1,0 +1,12 @@
+.search-container {
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--primary-white-color);
+  background-color: var(--primary-dark-color);
+
+  .search-form {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 40px;
+  }
+}
