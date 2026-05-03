@@ -1,16 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputComponent, ProfileCardComponent, StackInputComponent } from '@tt/shared';
-import { profileActions, ProfileDataService, selectProfiles } from '@tt/data-access';
+import { profileActions, profileFeature } from '@tt/data-access';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, startWith, Subject, switchMap } from 'rxjs';
+import { debounceTime, startWith } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 type SearchForm = {
@@ -27,14 +20,11 @@ type SearchForm = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
-  private readonly profileDataService = inject(ProfileDataService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
 
   readonly form: FormGroup<SearchForm>;
-
-  private readonly searchTrigger = new Subject<void>();
 
   constructor() {
     this.form = this.fb.group<SearchForm>({
@@ -43,15 +33,13 @@ export class SearchComponent {
       stack: this.fb.nonNullable.control([]),
     });
 
-    this.searchTrigger.pipe(startWith(void 0), debounceTime(500)).subscribe((formValue) => {
-      const value = formValue ?? this.form.getRawValue();
-      this.store.dispatch(profileActions.filterEvents({ filters: value }));
-    });
-
-    this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
-      this.searchTrigger.next();
-    });
+    this.form.valueChanges
+      .pipe(startWith(void 0), debounceTime(500), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        const filters = this.form.getRawValue();
+        this.store.dispatch(profileActions.filterEvents({ filters: filters }));
+      });
   }
 
-  readonly profiles = this.store.selectSignal(selectProfiles);
+  readonly profiles = this.store.selectSignal(profileFeature.selectProfiles);
 }
