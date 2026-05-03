@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@ngrx/effects": "^19.2.1",
+    "@ngrx/store": "^19.2.1",
     "eslint": "^9.33.0",
     "ngx-auth": "^6.0.0",
     "ngx-cookie-service": "^19.1.2",

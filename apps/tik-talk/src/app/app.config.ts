@@ -11,6 +11,7 @@ import {
 } from 'ngx-auth';
 import { importProvidersFrom } from '@angular/core';
 import { AuthService, AuthTokenInterceptor } from '@tt/auth';
+import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withFetch(), withInterceptors([AuthTokenInterceptor])),
     importProvidersFrom(AuthModule),
+    provideStore(),
     { provide: AUTH_SERVICE, useClass: AuthService },
     { provide: PUBLIC_FALLBACK_PAGE_URI, useValue: '/login' },
     { provide: PROTECTED_FALLBACK_PAGE_URI, useValue: '/' },

@@ -1,5 +1,5 @@
 <div class="search-container">
-  <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="search-form" [formGroup]="form">
     <app-input class="input" formControlName="firstName" label="Имя" placeholder="" />
     <app-input class="input" formControlName="lastName" label="Фамилия" placeholder="" />
     <app-stack-input formControlName="stack" [stack]="[]" />

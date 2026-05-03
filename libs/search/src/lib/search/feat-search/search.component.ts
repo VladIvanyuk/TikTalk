@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputComponent, ProfileCardComponent, StackInputComponent } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
-import { Profile } from '@tt/shared';
+import { profileActions, ProfileDataService, selectProfiles } from '@tt/data-access';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith, Subject, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 type SearchForm = {
   firstName: FormControl<string>;
@@ -30,6 +30,7 @@ export class SearchComponent {
   private readonly profileDataService = inject(ProfileDataService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
 
   readonly form: FormGroup<SearchForm>;
 
@@ -42,24 +43,15 @@ export class SearchComponent {
       stack: this.fb.nonNullable.control([]),
     });
 
-    this.searchTrigger
-      .pipe(
-        startWith(void 0),
-        debounceTime(500),
-        switchMap(() => this.profileDataService.getProfilesData(this.form.getRawValue())),
-      )
-      .subscribe((data) => {
-        this.profiles.set(data);
-      });
+    this.searchTrigger.pipe(startWith(void 0), debounceTime(500)).subscribe((formValue) => {
+      const value = formValue ?? this.form.getRawValue();
+      this.store.dispatch(profileActions.filterEvents({ filters: value }));
+    });
 
-    this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
+    this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.searchTrigger.next();
     });
   }
 
-  readonly profiles = signal<Profile[] | null>(null);
-
-  submit(): void {
-    console.log(this.form.value);
-  }
+  readonly profiles = this.store.selectSignal(selectProfiles);
 }
