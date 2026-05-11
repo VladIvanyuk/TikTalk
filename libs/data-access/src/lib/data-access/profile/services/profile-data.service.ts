@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable, Signal, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BASE_API_URL, Pageable } from '@tt/shared';
 import { Profile } from '@tt/shared';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { SearchForm, SubscribersPagination, UserUpdateData } from './model/types';
 
 @Injectable({
