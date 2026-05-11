@@ -3,7 +3,8 @@ import { Chat } from '../../services/chat/model/types';
 import { AvatarComponent } from '@tt/shared';
 import { avatarSizes } from '@tt/shared';
 import { DatePipe } from '@angular/common';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-chat-messages',
@@ -14,7 +15,8 @@ import { ProfileDataService } from '@tt/data-access';
 })
 export class ChatMessagesComponent {
   readonly chat = input.required<Chat>();
-  readonly myProfile = inject(ProfileDataService).myProfile;
+  private readonly store = inject(Store);
+  readonly myProfile = this.store.selectSignal(meFeature.selectMe);
 
   readonly avatarSizes = avatarSizes;
 

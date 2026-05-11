@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable, Signal, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BASE_API_URL, Pageable } from '@tt/shared';
 import { Profile } from '@tt/shared';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { SearchForm, SubscribersPagination, UserUpdateData } from './model/types';
 
 @Injectable({
@@ -10,7 +10,6 @@ import { SearchForm, SubscribersPagination, UserUpdateData } from './model/types
 })
 export class ProfileDataService {
   private readonly http = inject(HttpClient);
-  private readonly me = signal<Profile | null>(null);
 
   getProfilesData(data: SearchForm): Observable<Profile[]> {
     return this.http
@@ -29,12 +28,7 @@ export class ProfileDataService {
   }
 
   getMe(): Observable<Profile> {
-    return this.http.get<Profile>(BASE_API_URL + 'account/me').pipe(
-      tap((res) => {
-        this.me.set(res);
-      }),
-      catchError(this.handleError),
-    );
+    return this.http.get<Profile>(BASE_API_URL + 'account/me').pipe(catchError(this.handleError));
   }
 
   getMySubscribers(): Observable<Profile[]> {
@@ -70,10 +64,6 @@ export class ProfileDataService {
       .pipe(catchError(this.handleError));
   }
 
-  updateMyProfile(data: Profile): void {
-    this.me.set(data);
-  }
-
   updateAvatar(file: File): Observable<Profile> {
     const fd = new FormData();
     fd.append('image', file);
@@ -81,9 +71,5 @@ export class ProfileDataService {
     return this.http
       .post<Profile>(BASE_API_URL + `account/upload_image`, fd)
       .pipe(catchError(this.handleError));
-  }
-
-  get myProfile(): Signal<Profile | null> {
-    return this.me.asReadonly();
   }
 }

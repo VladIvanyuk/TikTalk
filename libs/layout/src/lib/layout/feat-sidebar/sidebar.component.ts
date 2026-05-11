@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SvgIconComponent } from '@tt/shared';
 import { sidebarMenu } from './models/menu';
 import { UserPreviewComponent } from '@tt/shared';
-import { firstValueFrom, map } from 'rxjs';
 import { AvatarComponent } from '@tt/shared';
 import { avatarSizes } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +17,6 @@ import { ProfileDataService } from '@tt/data-access';
     RouterLinkActive,
     SvgIconComponent,
     UserPreviewComponent,
-    AsyncPipe,
     AvatarComponent,
     RouterLink,
   ],
@@ -25,17 +24,11 @@ import { ProfileDataService } from '@tt/data-access';
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent implements OnInit {
-  private readonly profileDataService = inject(ProfileDataService);
-  readonly subscribers$ = this.profileDataService
-    .getMySubscribers()
-    .pipe(map((subscribers) => subscribers.slice(0, 3)));
-  readonly me = this.profileDataService.myProfile;
+export class SidebarComponent {
+  private readonly store = inject(Store);
+  readonly subscribers = this.store.selectSignal(meFeature.selectSubscribers);
+  readonly me = this.store.selectSignal(meFeature.selectMe);
 
   readonly menu = sidebarMenu;
   readonly avatarSizes = avatarSizes;
-
-  ngOnInit(): void {
-    firstValueFrom(this.profileDataService.getMe()).catch((err) => console.log(err));
-  }
 }

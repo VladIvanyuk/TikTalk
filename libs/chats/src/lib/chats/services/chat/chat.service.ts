@@ -3,15 +3,16 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { Chat, MyChatList } from './model/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BASE_API_URL } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
   private readonly http = inject(HttpClient);
-  private readonly profileDataService = inject(ProfileDataService);
-
+  private readonly store = inject(Store);
+  readonly me = this.store.selectSignal(meFeature.selectMe);
   createChat(id: number): Observable<Chat> {
     return this.http.post<Chat>(BASE_API_URL + `chat/${id}`, {}).pipe(catchError(this.handleError));
   }
@@ -27,10 +28,7 @@ export class ChatService {
       map((chat) => {
         return {
           ...chat,
-          companion:
-            chat.userFirst.id === this.profileDataService.myProfile()?.id
-              ? chat.userSecond
-              : chat.userFirst,
+          companion: chat.userFirst.id === this.me()?.id ? chat.userSecond : chat.userFirst,
         };
       }),
       catchError(this.handleError),

@@ -6,6 +6,9 @@ import { SearchComponent } from '@tt/search';
 import { SettingsComponent } from '@tt/settings';
 import { ProfileComponent } from '@tt/profile';
 import { LoginComponent } from '@tt/auth';
+import { provideEffects } from '@ngrx/effects';
+import { meFeature, ProfileEffects, profileFeature } from '@tt/data-access';
+import { provideState } from '@ngrx/store';
 
 export const routes: Routes = [
   {
@@ -13,12 +16,17 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'search', component: SearchComponent },
+      {
+        path: 'search',
+        component: SearchComponent,
+        providers: [provideState(profileFeature), provideEffects(ProfileEffects)],
+      },
       { path: 'chats', loadChildren: () => CHAT_ROUTES },
       { path: 'profile/:id', component: ProfileComponent },
       { path: 'settings', component: SettingsComponent },
     ],
     canActivate: [protectedGuard],
+    providers: [provideState(meFeature)],
   },
   { path: 'login', component: LoginComponent, canActivate: [publicGuard] },
 ];

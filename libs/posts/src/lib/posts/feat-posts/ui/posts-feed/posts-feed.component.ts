@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { avatarSizes } from '@tt/shared';
 import {
   AfterViewInit,
@@ -6,19 +7,19 @@ import {
   DestroyRef,
   ElementRef,
   inject,
-  OnInit,
   Renderer2,
   signal,
 } from '@angular/core';
 import { PostsService } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
 import { Post } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
 import { SvgIconComponent } from '@tt/shared';
-import { fromEvent, Observable, switchMap, tap, throttleTime } from 'rxjs';
+import { fromEvent, Observable, startWith, switchMap, tap, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostFormComponent } from '../../post-form/post-form.component';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-posts-feed',
@@ -27,22 +28,31 @@ import { PostFormComponent } from '../../post-form/post-form.component';
   styleUrl: './posts-feed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostsFeedComponent implements OnInit, AfterViewInit {
+export class PostsFeedComponent implements AfterViewInit {
   private readonly postsService = inject(PostsService);
+  private readonly store = inject(Store);
   readonly avatarSizes = avatarSizes;
-  readonly me = inject(ProfileDataService).myProfile;
+
+  readonly me = this.store.selectSignal(meFeature.selectMe);
   readonly posts = signal<Post[]>([]);
   readonly destroyRef = inject(DestroyRef);
+  readonly route = inject(ActivatedRoute);
 
   readonly hostElement = inject(ElementRef);
   readonly r2 = inject(Renderer2);
+  readonly currentId = signal<string>(this.route.snapshot.params['id']);
 
-  ngOnInit(): void {
-    this.fetchPosts().subscribe({
-      error: (err) => {
-        console.error('Error fetching posts:', err);
-      },
-    });
+  constructor() {
+    this.route.params
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        startWith({ id: this.currentId() }),
+        switchMap(({ id }) => {
+          this.currentId.set(id);
+          return this.fetchPosts(this.currentId());
+        }),
+      )
+      .subscribe();
   }
 
   ngAfterViewInit(): void {
@@ -70,7 +80,10 @@ export class PostsFeedComponent implements OnInit, AfterViewInit {
         communityId: 0,
         title: '',
       })
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        switchMap(() => this.fetchPosts(this.currentId())),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -89,7 +102,7 @@ export class PostsFeedComponent implements OnInit, AfterViewInit {
         text,
       })
       .pipe(
-        switchMap(() => this.fetchPosts()),
+        switchMap(() => this.fetchPosts(this.currentId())),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
@@ -102,8 +115,9 @@ export class PostsFeedComponent implements OnInit, AfterViewInit {
       });
   }
 
-  fetchPosts(): Observable<Post[]> {
-    return this.postsService.getPosts().pipe(
+  fetchPosts(userId: string): Observable<Post[]> {
+    const id = String(userId === 'me' ? this.me()!.id : userId);
+    return this.postsService.getPosts(id).pipe(
       tap((data) => {
         this.posts.set(data);
       }),

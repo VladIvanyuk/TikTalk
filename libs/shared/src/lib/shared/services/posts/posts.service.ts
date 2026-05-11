@@ -20,8 +20,10 @@ export class PostsService {
       .pipe(catchError(this.handleError));
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(BASE_API_URL + `post/`).pipe(catchError(this.handleError));
+  getPosts(userId: string): Observable<Post[]> {
+    return this.http
+      .get<Post[]>(BASE_API_URL + `post/?user_id=${userId}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
