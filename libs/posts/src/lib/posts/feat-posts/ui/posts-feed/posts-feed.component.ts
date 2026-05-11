@@ -37,7 +37,7 @@ export class PostsFeedComponent implements AfterViewInit {
 
   readonly hostElement = inject(ElementRef);
   readonly r2 = inject(Renderer2);
-  readonly currentId = signal<number>(this.route.snapshot.params['id']);
+  readonly currentId = signal<string>(this.route.snapshot.params['id']);
 
   constructor() {
     this.route.params
@@ -45,7 +45,7 @@ export class PostsFeedComponent implements AfterViewInit {
         takeUntilDestroyed(this.destroyRef),
         startWith({ id: this.currentId() }),
         switchMap(({ id }) => {
-          this.currentId.set(Number(id));
+          this.currentId.set(id);
           return this.fetchPosts(this.currentId());
         }),
       )
@@ -112,8 +112,9 @@ export class PostsFeedComponent implements AfterViewInit {
       });
   }
 
-  fetchPosts(userId: number): Observable<Post[]> {
-    return this.postsService.getPosts(userId).pipe(
+  fetchPosts(userId: string): Observable<Post[]> {
+    const id = String(userId === 'me' ? this.me()!.id : userId);
+    return this.postsService.getPosts(id).pipe(
       tap((data) => {
         this.posts.set(data);
       }),
