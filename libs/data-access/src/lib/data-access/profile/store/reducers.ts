@@ -27,5 +27,11 @@ export const profileFeature = createFeature({
         profiles: payload.profiles,
       };
     }),
+    on(profileActions.filterEvents, (state, payload) => {
+      return {
+        ...state,
+        profileFilters: payload.filters,
+      };
+    }),
   ),
 });

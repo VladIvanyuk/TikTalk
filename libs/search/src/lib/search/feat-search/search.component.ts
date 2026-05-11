@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputComponent, ProfileCardComponent, StackInputComponent } from '@tt/shared';
 import { profileActions, profileFeature } from '@tt/data-access';
@@ -23,20 +23,25 @@ export class SearchComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
+  private readonly isSearchInitialized = signal<boolean>(false);
 
   readonly form: FormGroup<SearchForm>;
 
+  readonly storeFilters = this.store.selectSignal(profileFeature.selectProfileFilters);
+
   constructor() {
     this.form = this.fb.group<SearchForm>({
-      firstName: this.fb.nonNullable.control(''),
-      lastName: this.fb.nonNullable.control(''),
-      stack: this.fb.nonNullable.control([]),
+      firstName: this.fb.nonNullable.control(this.storeFilters()?.firstName),
+      lastName: this.fb.nonNullable.control(this.storeFilters()?.lastName),
+      stack: this.fb.nonNullable.control(this.storeFilters()?.stack),
     });
 
     this.form.valueChanges
       .pipe(startWith(void 0), debounceTime(500), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        const filters = this.form.getRawValue();
+        const filters = this.isSearchInitialized() ? this.form.getRawValue() : this.storeFilters();
+
+        this.isSearchInitialized.set(true);
         this.store.dispatch(profileActions.filterEvents({ filters: filters }));
       });
   }

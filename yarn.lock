@@ -2074,6 +2074,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@ngrx/store-devtools@^19.2.1":
+  version "19.2.1"
+  resolved "https://registry.npmjs.org/@ngrx/store-devtools/-/store-devtools-19.2.1.tgz"
+  integrity sha512-gj1YO+4yl6D0l9vzLWdw07TQSu5UPKgsSLsNJfDLXraaLCUcB8voAp4J7zohN8qR5ixDuHeMoiSSVuklQ75u2w==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/store@^19.2.1", "@ngrx/store@19.2.1":
   version "19.2.1"
   resolved "https://registry.npmjs.org/@ngrx/store/-/store-19.2.1.tgz"
