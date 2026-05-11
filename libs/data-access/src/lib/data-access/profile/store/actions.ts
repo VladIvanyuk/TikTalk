@@ -9,3 +9,11 @@ export const profileActions = createActionGroup({
     'profile loaded': props<{ profiles: Profile[] }>(),
   },
 });
+
+export const meActions = createActionGroup({
+  source: 'Me',
+  events: {
+    'me loaded': props<{ me: Profile }>(),
+    'subscribers loaded': props<{ subscribers: Profile[] }>(),
+  },
+});

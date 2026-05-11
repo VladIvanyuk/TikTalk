@@ -9,8 +9,9 @@ import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { TagComponent } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature, ProfileDataService } from '@tt/data-access';
 import { PostsFeedComponent } from '@tt/posts';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile',
@@ -31,13 +32,14 @@ import { PostsFeedComponent } from '@tt/posts';
 export class ProfileComponent {
   private readonly profileDataService = inject(ProfileDataService);
   private readonly route = inject(ActivatedRoute);
+  private readonly store = inject(Store);
 
   readonly subsLoading = signal(false);
   readonly isMyPage = signal(false);
 
   readonly avatarSizes = avatarSizes;
 
-  private readonly me$ = toObservable(this.profileDataService.myProfile);
+  private readonly me$ = this.store.select(meFeature.selectMe);
 
   readonly subs$ = this.route.params.pipe(
     switchMap(({ id }) => {

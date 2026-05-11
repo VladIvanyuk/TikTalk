@@ -7,7 +7,7 @@ import { SettingsComponent } from '@tt/settings';
 import { ProfileComponent } from '@tt/profile';
 import { LoginComponent } from '@tt/auth';
 import { provideEffects } from '@ngrx/effects';
-import { ProfileEffects, profileFeature } from '@tt/data-access';
+import { meFeature, ProfileEffects, profileFeature } from '@tt/data-access';
 import { provideState } from '@ngrx/store';
 
 export const routes: Routes = [
@@ -26,6 +26,7 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsComponent },
     ],
     canActivate: [protectedGuard],
+    providers: [provideState(meFeature)],
   },
   { path: 'login', component: LoginComponent, canActivate: [publicGuard] },
 ];

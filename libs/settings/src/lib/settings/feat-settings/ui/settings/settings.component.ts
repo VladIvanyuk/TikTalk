@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ProfileDataService } from '@tt/data-access';
+import { meActions, meFeature, ProfileDataService } from '@tt/data-access';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ProfileHeaderComponent } from '@tt/shared';
@@ -19,6 +19,7 @@ import { RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
 import { StackInputComponent } from '@tt/shared';
 import { AvatarUploadComponent } from '../../../feat-avatar-upload/ui/avatar-upload/avatar-upload.component';
+import { Store } from '@ngrx/store';
 
 type SettingsForm = {
   firstName: FormControl<string>;
@@ -51,10 +52,11 @@ export class SettingsComponent {
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
   private readonly avatar = signal<File | null>(null);
+  private readonly store = inject(Store);
 
   readonly isLoading = signal(false);
 
-  readonly me$ = toObservable(this.profileDataService.myProfile).pipe(
+  readonly me$ = this.store.select(meFeature.selectMe).pipe(
     tap((data) => {
       if (data) {
         this.form.patchValue({
@@ -103,7 +105,7 @@ export class SettingsComponent {
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: (data) => {
-            this.profileDataService.updateMyProfile(data);
+            this.store.dispatch(meActions.meLoaded({ me: data }));
           },
           error: (err) => {
             console.error(err);
@@ -116,7 +118,7 @@ export class SettingsComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (data) => {
-          this.profileDataService.updateMyProfile(data);
+          this.store.dispatch(meActions.meLoaded({ me: data }));
           this.isLoading.set(false);
         },
         error: (err) => {

@@ -11,7 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { PostsService } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
 import { Post } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { DatePipe } from '@angular/common';
@@ -19,6 +19,7 @@ import { SvgIconComponent } from '@tt/shared';
 import { fromEvent, Observable, startWith, switchMap, tap, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostFormComponent } from '../../post-form/post-form.component';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-posts-feed',
@@ -29,8 +30,10 @@ import { PostFormComponent } from '../../post-form/post-form.component';
 })
 export class PostsFeedComponent implements AfterViewInit {
   private readonly postsService = inject(PostsService);
+  private readonly store = inject(Store);
   readonly avatarSizes = avatarSizes;
-  readonly me = inject(ProfileDataService).myProfile;
+
+  readonly me = this.store.selectSignal(meFeature.selectMe);
   readonly posts = signal<Post[]>([]);
   readonly destroyRef = inject(DestroyRef);
   readonly route = inject(ActivatedRoute);

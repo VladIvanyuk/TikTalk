@@ -11,7 +11,8 @@ import { avatarSizes, TextareaComponent } from '@tt/shared';
 import { AvatarComponent } from '@tt/shared';
 import { ButtonComponent } from '@tt/shared';
 import { SvgIconComponent } from '@tt/shared';
-import { ProfileDataService } from '@tt/data-access';
+import { meFeature } from '@tt/data-access';
+import { Store } from '@ngrx/store';
 
 type PostForm = {
   text: FormControl;
@@ -32,7 +33,8 @@ type PostForm = {
 })
 export class PostFormComponent {
   private readonly fb = inject(FormBuilder);
-  readonly me = inject(ProfileDataService).myProfile;
+  private readonly store = inject(Store);
+  readonly me = this.store.selectSignal(meFeature.selectMe);
 
   readonly placeholder = input();
 

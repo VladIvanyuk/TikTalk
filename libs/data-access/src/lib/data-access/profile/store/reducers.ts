@@ -1,5 +1,5 @@
 import { Profile } from '@tt/shared';
-import { profileActions } from './actions';
+import { meActions, profileActions } from './actions';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { SearchForm } from '../services/model/types';
 
@@ -17,6 +17,16 @@ export const initialState: ProfileState = {
   },
 };
 
+export interface MeState {
+  me: Profile | null;
+  subscribers: Profile[];
+}
+
+export const initialMeState: MeState = {
+  me: null,
+  subscribers: [],
+};
+
 export const profileFeature = createFeature({
   name: 'profileFeature',
   reducer: createReducer(
@@ -31,6 +41,25 @@ export const profileFeature = createFeature({
       return {
         ...state,
         profileFilters: payload.filters,
+      };
+    }),
+  ),
+});
+
+export const meFeature = createFeature({
+  name: 'meFeature',
+  reducer: createReducer(
+    initialMeState,
+    on(meActions.meLoaded, (state, payload) => {
+      return {
+        ...state,
+        me: payload.me,
+      };
+    }),
+    on(meActions.subscribersLoaded, (state, payload) => {
+      return {
+        ...state,
+        subscribers: payload.subscribers,
       };
     }),
   ),
